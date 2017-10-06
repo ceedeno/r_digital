@@ -1,0 +1,4 @@
+---
+name: archivo serio
+model_class: Article
+model_attachment: file
