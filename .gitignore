@@ -6,3 +6,5 @@
 /vendor
 /log/
 *.cache
+public/system/
+db/development.sqlite3
