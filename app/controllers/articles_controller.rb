@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+
+    redirect_to '/web/viewer.html?file='+ current_user.name
   end
 
   # GET /articles/new
