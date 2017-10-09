@@ -1,0 +1,19 @@
+<%= simple_form_for(@journal) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :identifier %>
+    <%= f.input :editor %>
+    <%= f.input :publisher %>
+    <%= f.input :indexing %>
+    <%= f.input :copyright %>
+    <%= f.input :subject %>
+    <%= f.input :others %>
+    <%= f.association :articles, as: :check_boxes  %>
+    <%#= f.input :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

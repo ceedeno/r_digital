@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Identifier:</strong>
+  <%= @journal.identifier %>
+</p>
+
+<p>
+  <strong>Editor:</strong>
+  <%= @journal.editor %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @journal.publisher %>
+</p>
+
+<p>
+  <strong>Indexing:</strong>
+  <%= @journal.indexing %>
+</p>
+
+<p>
+  <strong>Copyright:</strong>
+  <%= @journal.copyright %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @journal.subject %>
+</p>
+
+<p>
+  <strong>Others:</strong>
+  <%= @journal.others %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @journal.user %>
+</p>
+
+<%= link_to 'Edit', edit_journal_path(@journal) %> |
+<%= link_to 'Back', journals_path %>

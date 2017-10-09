@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :journals
   resources :articles
   root to: 'visitors#index'
   
