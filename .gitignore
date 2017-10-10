@@ -4,5 +4,4 @@
 /tmp/
 /vendor
 /log/
-*.cache
 public/system/

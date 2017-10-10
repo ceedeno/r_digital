@@ -46,10 +46,12 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params.merge(user_id: current_user.id))
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.js {}
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end
@@ -72,6 +74,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :abstract, :author, :status, :file)
+      params.require(:article).permit(:title, :abstract, :author, :status, :file, :position, :journal_id)
     end
 end

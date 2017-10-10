@@ -40,5 +40,50 @@
   <%= @journal.user %>
 </p>
 
+<%= hidden_field_tag 'journal', @journal.id, id: 'journal_id' %>
+<%= select_tag 'articles', options_from_collection_for_select(Article.all, 'id', 'title'), id: 'article_id_select' %>
+<%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
+<%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
+
+<br>
+
+
+<div id='journal-articles'>
+
+  <%= render 'articles', journal: @journal %>
+
+</div>
+
+<br>
+
 <%= link_to 'Edit', edit_journal_path(@journal) %> |
 <%= link_to 'Back', journals_path %>
+
+<script>
+
+    function addArticleTojournal() {
+        //console.log('hola');
+
+        var journalId = $('#journal_id').val();
+        var articleId = $('#article_id_select').val();
+        var position = $('#article_position_text_field').val();
+
+        console.log(articleId, ' ', position);
+
+
+        $.ajax({
+            type: 'PATCH',
+            url: '/articles/' + articleId,
+            dataType: 'script',
+            data: {
+                article: {
+                    journal_id: journalId,
+                    position: position
+                }
+            }
+        });
+
+    }
+
+
+</script>
