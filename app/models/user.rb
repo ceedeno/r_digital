@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :articles
 
+  enum role: [:basic, :adviser, :referee, :tmdcm, :ecm, :director]
+
+
   def combine_pdfs
     pdf = CombinePDF.new
 

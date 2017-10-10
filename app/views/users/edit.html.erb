@@ -1,0 +1,19 @@
+<% if current_user.director? && current_user.id != @user.id %>
+
+<div class="container-with-margin">
+    <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :role, collection: User.roles.keys, include_blank: false %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+
+
+    <% end %>
+
+</div>
+<% end %>

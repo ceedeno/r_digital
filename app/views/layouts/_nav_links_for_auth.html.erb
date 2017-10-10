@@ -15,6 +15,7 @@
           <span class="caret"></span></a>
         <ul class="dropdown-menu">
 
+          <!-- TODO: use user's role -->
           <% if current_user.first_name == 'first_name' %>
 
               <li><a href="#">Action</a></li>
@@ -35,7 +36,10 @@
 
 
 <% else %>
-    <li><%= link_to 'Sign in', new_user_session_path %></li>
-    <li><%= link_to 'Sign up', new_user_registration_path %></li>
+    <ul class="nav navbar-nav">
+
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
+    </ul>
 <% end %>
 
