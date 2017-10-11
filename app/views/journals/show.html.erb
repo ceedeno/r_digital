@@ -1,4 +1,6 @@
 
+<div class="container-with-margin">
+
 <p>
   <strong>Identifier:</strong>
   <%= @journal.identifier %>
@@ -55,8 +57,27 @@
 
 <br>
 
+
+<%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.file_name, target: :_blank %>
+
+<%= button_to 'Generar PDF', journal_combine_pdfs_path(@journal), method: :patch, remote: true %>
+
+<br>
+
+<div id="journal-pdfs-preview">
+
+  <iframe src='/web/viewer.html?file=<%= @journal&.file_name %>' class="article-pdf-viewer"></iframe>
+
+</div>
+
+
+
+
 <%= link_to 'Edit', edit_journal_path(@journal) %> |
 <%= link_to 'Back', journals_path %>
+
+
+</div>
 
 <script>
 
@@ -80,7 +101,22 @@
                     position: position
                 }
             }
+        }).done(function() {
+            $.ajax({
+                type: 'PATCH',
+                url: '/journals/' + journalId + '/combine_pdfs',
+                dataType: 'script',
+                data: {
+                    article: {
+                        journal_id: journalId
+                    }
+                }
+            });
         });
+
+
+
+
 
     }
 

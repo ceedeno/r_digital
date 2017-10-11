@@ -1,81 +1,97 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
-<p>
-  <strong>Abstract:</strong>
-  <%= @article.abstract %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @article.author %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @article.status %>
-</p>
-
-<p>
-  <strong>File:</strong>
-  <%= link_to 'Ver Articulo', @article&.file&.url %>
-  <%= link_to 'Ver Articulo', @article&.file&.remote_url %>
-
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @article&.user&.first_name %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<div class="container-with-margin">
 
 
-<canvas id="the-canvas"></canvas>
+  <p>
+    <strong>Title:</strong>
+    <%= @article.title %>
+  </p>
+
+  <p>
+    <strong>Abstract:</strong>
+    <%= @article.abstract %>
+  </p>
+
+  <p>
+    <strong>Author:</strong>
+    <%= @article.author %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @article.status %>
+  </p>
+
+  <p>
+    <strong>File:</strong>
+    <%= link_to 'Ver en el Navegador', @article&.file&.url %>
+    <%#= link_to 'Ver en el Navegador', @article&.file&.remote_url %>
+
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @article&.user&.first_name %>
+  </p>
 
 
-<%= javascript_include_tag '/pdf.js' %>
+  <iframe src='/web/viewer.html?file=<%= @article&.file&.remote_url %>' class="article-pdf-viewer"></iframe>
 
 
-<script type="text/javascript">
+  <hr>
 
-    PDFJS.workerSrc = "/pdf.worker.js";
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Back', articles_path %>
 
 
-    var url = '<%= @article&.file&.url %>';
+</div>
 
-    // Asynchronous download PDF
-    PDFJS.getDocument(url)
-        .then(function (pdf) {
-            return pdf.getPage(1);
-        })
-        .then(function (page) {
+
+<% if false %>
+
+    <canvas id="the-canvas"></canvas>
+
+
+    <%= javascript_include_tag '/pdf.js' %>
+
+
+    <script type="text/javascript">
+
+        PDFJS.workerSrc = "/pdf.worker.js";
+
+
+        var url = '<%= @article&.file&.url %>';
+
+        // Asynchronous download PDF
+        PDFJS.getDocument(url)
+            .then(function (pdf) {
+                return pdf.getPage(1);
+            })
+            .then(function (page) {
 // Set scale (zoom) level
-            var scale = 1.5;
+                var scale = 1.5;
 
 // Get viewport (dimensions)
-            var viewport = page.getViewport(scale);
+                var viewport = page.getViewport(scale);
 
 // Get canvas#the-canvas
-            var canvas = document.getElementById('the-canvas');
+                var canvas = document.getElementById('the-canvas');
 
 // Fetch canvas' 2d context
-            var context = canvas.getContext('2d');
+                var context = canvas.getContext('2d');
 
 // Set dimensions to Canvas
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
 // Prepare object needed by render method
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
 
 // Render PDF page
-            page.render(renderContext);
-        });
-</script>
+                page.render(renderContext);
+            });
+    </script>
+
+<% end %>

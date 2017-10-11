@@ -61,6 +61,15 @@ class JournalsController < ApplicationController
     end
   end
 
+
+  def combine_pdfs
+    @journal = Journal.find(params[:journal_id])
+
+
+    @journal.combine_pdfs
+  end
+
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_journal
@@ -69,6 +78,6 @@ class JournalsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def journal_params
-    params.require(:journal).permit(:identifier, :editor, :publisher, :indexing, :copyright, :subject, :others, article_ids: [])
+    params.require(:journal).permit(:identifier, :editor, :publisher, :indexing, :copyright, :subject, :others, :file_name, article_ids: [])
   end
 end

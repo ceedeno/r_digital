@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :journals
+  resources :journals do
+    patch 'combine_pdfs'
+  end
   resources :articles
   root to: 'visitors#index'
   
