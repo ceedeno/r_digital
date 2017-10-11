@@ -60,7 +60,7 @@
 
 <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.file_name, target: :_blank %>
 
-<%= button_to 'Generar PDF', journal_combine_pdfs_path(@journal), method: :patch, remote: true %>
+<%#= button_to 'Generar PDF', journal_combine_pdfs_path(@journal), method: :patch, remote: true %>
 
 <br>
 
