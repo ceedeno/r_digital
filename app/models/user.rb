@@ -8,7 +8,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :articles
+  has_many :reviewed_users_articles, class_name: 'UsersArticle'
+  has_many :reviewed_articles, through: :reviewed_users_articles, source: :article
 
+  # tmdcm: technical management draftinf comitee member,  ecm: editorial comitee member
   enum role: [:basic, :adviser, :referee, :tmdcm, :ecm, :director]
 
 

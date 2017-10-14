@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010221209) do
+ActiveRecord::Schema.define(version: 20171014215932) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "abstract"
     t.string "author"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file_uid"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20171010221209) do
     t.string "web_site"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_articles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "article_id"
+    t.integer "status"
+    t.text "correction_note"
   end
 
 end
