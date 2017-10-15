@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :journals do
     patch 'combine_pdfs'
   end
-  resources :articles
+  resources :articles do
+    patch 'update_users_article'
+  end
   root to: 'visitors#index'
   
   devise_for :users, controllers: { registrations: 'registrations' }

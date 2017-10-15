@@ -1,6 +1,86 @@
 <div class="container-with-margin">
 
 
+  <!-- Editorial comitee member -->
+  <% if current_user.ecm? && !current_user.reviewed_article?(@article) && @article.basic? %>
+
+      <!-- Approved -->
+      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+          <%= hidden_field_tag :status, :eca %>
+
+          <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+
+      <% end %>
+
+      <!-- Rejected -->
+      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+          <%= hidden_field_tag :status, :rejected_by_ec %>
+          <%= f.submit 'Rechazar', class: 'btn btn-danger' %>
+
+      <% end %>
+
+      <!-- -->
+      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+          <%= hidden_field_tag :status, :tcbec %>
+          <%= text_area_tag :note %>
+
+          <%= f.submit 'Envair correción', class: 'btn btn-info' %>
+
+      <% end %>
+
+  <% end %>
+
+
+
+  <!-- Referees members -->
+
+  <!-- Editorial comitee member -->
+  <% if current_user.referee? && !current_user.reviewed_article?(@article) && @article.eca? %>
+
+      <!-- Approved -->
+      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+          <%= hidden_field_tag :status, :approved_by_referee %>
+
+          <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+
+      <% end %>
+
+      <!-- Rejected -->
+      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+          <%= hidden_field_tag :status, :rejected_by_r %>
+          <%= f.submit 'Rechazar', class: 'btn btn-danger' %>
+
+      <% end %>
+
+      <!-- -->
+      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+          <%= hidden_field_tag :status, :tcbr %>
+          <%= text_area_tag :note %>
+
+          <%= f.submit 'Envair correción', class: 'btn btn-info' %>
+
+      <% end %>
+
+  <% end %>
+
+
+
+  <% if false %>
+
+      <% if @article.basic? %>
+          <%= link_to "Aprobar <span class='glyphicon glyphicon-ok'></span>".html_safe, article_path(id: @article.id, article: {status: :approved}), method: :patch, remote: false, class: 'btn btn-primary' %>
+      <% else %>
+          <%= link_to "Aprobar <span class='glyphicon glyphicon-ok'></span>".html_safe, article_path(id: @article.id, article: {status: :approved}), method: :patch, remote: false, class: 'btn btn-primary' %>
+      <% end %>
+
+  <% end %>
+
   <p>
     <strong>Title:</strong>
     <%= @article.title %>

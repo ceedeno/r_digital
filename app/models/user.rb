@@ -15,4 +15,9 @@ class User < ApplicationRecord
   enum role: [:basic, :adviser, :referee, :tmdcm, :ecm, :director]
 
 
+  def reviewed_article?(article)
+    reviewed_articles.include?(article)
+  end
+
+
 end
