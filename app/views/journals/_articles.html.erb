@@ -1,6 +1,9 @@
-<% journal.articles.each do |article| %>
+<% @journal.articles.each do |article| %>
 
     <%= article.title %>   <%= article.position %>
+
+    <%= link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, article_path(id: article.id, article: {journal_id: 0}), method: :patch, remote: true, class: '', onclick: "addArticleTojournal()"  %>
+
     <br>
 
 <% end %>

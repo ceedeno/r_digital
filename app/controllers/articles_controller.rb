@@ -43,8 +43,12 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+
+    @journal = @article.journal
+
     respond_to do |format|
       if @article.update(article_params.merge(user_id: current_user.id))
+        @journal = @article.journal if @article.journal
         format.html {redirect_to @article, notice: 'Article was successfully updated.'}
         format.js {}
         format.json {render :show, status: :ok, location: @article}
