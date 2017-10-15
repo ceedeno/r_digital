@@ -24,7 +24,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.beta'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem 'devise'
 gem 'high_voltage'
 group :development do

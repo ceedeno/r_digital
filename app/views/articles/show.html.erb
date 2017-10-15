@@ -81,43 +81,77 @@
 
   <% end %>
 
+  <div class="card" style="width: 20rem;">
+    <div class="card-body">
+      <h4 class="card-title"><%= @article.title %></h4>
+      <p class="card-text"><%= @article.abstract %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item fa fa-user"> &nbsp; <%= @article.author %></li>
+      <li class="list-group-item fa fa-info-circle"> &nbsp; <%= @article.status %></li>
+    </ul>
+    <div class="card-body">
+      <li class="list-group-item "> &nbsp; <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip" %></li>
+
+      <li class="list-group-item "> &nbsp; <%= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>
+
+      <li class="list-group-item "> &nbsp; <%= link_to ' Back', articles_path, class: "fa fa-chevron-left" %> </li>
+
+
+
+
+    </div>
+  </div>
+
+
+  <!--
   <p>
     <strong>Title:</strong>
-    <%= @article.title %>
+    <%#= @article.title %>
   </p>
 
   <p>
     <strong>Abstract:</strong>
-    <%= @article.abstract %>
+    <%#= @article.abstract %>
   </p>
 
   <p>
     <strong>Author:</strong>
-    <%= @article.author %>
+    <%#= @article.author %>
   </p>
 
   <p>
     <strong>Status:</strong>
-    <%= @article.status %>
+    <%#= @article.status %>
   </p>
 
   <p>
     <strong>File:</strong>
-    <%= link_to 'Ver en el Navegador', @article&.file&.url %>
+    <%#= link_to 'Ver en el Navegador', @article&.file&.url %>
     <%#= link_to 'Ver en el Navegador', @article&.file&.remote_url %>
 
   </p>
 
   <p>
     <strong>User:</strong>
-    <%= @article&.user&.first_name %>
+    <%#= @article&.user&.first_name %>
   </p>
 
 
-  <iframe src='/web/viewer.html?file=<%= @article&.file&.remote_url %>' class="article-pdf-viewer"></iframe>
+  <iframe src='/web/viewer.html?file=<%#= @article&.file&.remote_url %>' class="article-pdf-viewer"></iframe>
 
 
   <hr>
+
+-->
+
+  <br><br>
+  <h4>Preview</h4>
+  <hr>
+  <br>
+
+  <iframe src='/web/viewer.html?file=<%= @article&.file&.remote_url %>' class="article-pdf-viewer"></iframe>
+
 
   <%= link_to 'Edit', edit_article_path(@article) %> |
   <%= link_to 'Back', articles_path %>

@@ -1,4 +1,5 @@
 <%# navigation styled for Bootstrap 3.0 %>
+<!--
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -9,13 +10,35 @@
         <span class="icon-bar"></span>
       </button>
 
-      <%= image_tag 'logo_ula_2.png', class: 'nav-bar-logo' %> &nbsp;
-      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+      <%#= image_tag 'logo_ula_2.png', class: 'nav-bar-logo' %> &nbsp;
+<%#= link_to 'Home', root_path, class: 'navbar-brand' %>
 
     </div>
     <div class="collapse navbar-collapse">
-        <%#= render 'layouts/navigation_links' %>
-        <%= render 'layouts/nav_links_for_auth' %>
+      <%#= render 'layouts/navigation_links' %>
+<%#= render 'layouts/nav_links_for_auth' %>
+    </div>
+  </div>
+</nav>
+
+-->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #27364a;">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <%= image_tag 'logo_ula_2.png', class: 'nav-bar-logo' %>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <%= render 'layouts/nav_links_for_auth' %>
+
+
     </div>
   </div>
 </nav>

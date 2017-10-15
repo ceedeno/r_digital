@@ -1,47 +1,58 @@
 <% if user_signed_in? %>
 
-    <ul class="nav navbar-nav">
 
-      <li><%= link_to 'Articles', articles_path %></li>
-      <li><%= link_to 'Journals', journals_path %></li>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'Home', root_path, class: 'nav-link' %>
+      </li>
 
-      <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-      <li><%= link_to 'Users', users_path %></li>
-      <li><%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %></li>
+
+      <li class="nav-item"><%= link_to 'Articles', articles_path, class: 'nav-link' %></li>
+
+      <li class="nav-item"><%= link_to 'Journals', journals_path, class: 'nav-link' %></li>
+
+      <li><%= link_to 'Edit account', edit_user_registration_path, class: 'nav-link' %></li>
+      <li><%= link_to 'Users', users_path, class: 'nav-link' %></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+
+
     </ul>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="glyphicon glyphicon-cog"></span>
-          <span class="caret"></span></a>
-        <ul class="dropdown-menu">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" herf="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-          <!-- TODO: use user's role -->
           <% if current_user.first_name == 'first_name' %>
 
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">Separated link</a>
 
           <% elsif current_user.first_name == 'otro_name' %>
-
-              <li><%= link_to 'nada', root_path %></li>
-
+              <%= link_to 'nada', root_path, class: 'dropdown-item' %>
           <% end %>
 
-        </ul>
+        </div>
       </li>
     </ul>
 
 
-<% else %>
-    <ul class="nav navbar-nav">
 
-      <li><%= link_to 'Sign in', new_user_session_path %></li>
-      <li><%= link_to 'Sign up', new_user_registration_path %></li>
+<% else %>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'Home', root_path, class: 'nav-link' %>
+      </li>
+
+
+      <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %></li>
+
     </ul>
 <% end %>
 
