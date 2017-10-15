@@ -5,7 +5,23 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+
+    if current_user.basic?
+      @articles = current_user.articles
+    elsif current_user.ecm?
+      @articles = Article.where(status: :basic)
+    elsif current_user.referee?
+      #TODO to be done
+      @articles = []
+    elsif current_user.director?
+      @articles = Article.all
+    else
+      @articles = []
+    end
+
+
+    #@articles = Article.all
+
   end
 
   # GET /articles/1

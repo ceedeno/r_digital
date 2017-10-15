@@ -8,6 +8,8 @@ class Article < ApplicationRecord
   has_many :referee_reviewed_users, -> {where role: :referee}, through: :users_articles, source: :user
   has_many :ecm_reviewed_users, -> {where role: :ecm}, through: :users_articles, source: :user
 
+  default_scope { order('status DESC') }
+
   dragonfly_accessor :file
 
   # editorial comitee approved, to correct by editorial comitee, to correct by referres
@@ -34,6 +36,12 @@ class Article < ApplicationRecord
 
       if ecm_reviewed_users.count == 3 && ac + dc > rc && ac > dc
         update_attribute(:status, :eca)
+
+      elsif ecm_reviewed_users.count == 3 && ac + dc > rc && ac <= dc
+        update_attribute(:status, :tcbec)
+
+      elsif ecm_reviewed_users.count == 3 && ac + dc <= rc
+        update_attribute(:status, :rejected)
       end
 
 
@@ -47,6 +55,10 @@ class Article < ApplicationRecord
 
       if referee_reviewed_users.count == 3 && ac + dc > rc && ac > dc
         update_attribute(:status, :approved)
+      elsif referee_reviewed_users.count == 3 && ac + dc > rc && ac <= dc
+        update_attribute(:status, :tcbr)
+      elsif referee_reviewed_users.count == 3 && ac + dc <= rc
+        update_attribute(:status, :rejected)
       end
 
     end
