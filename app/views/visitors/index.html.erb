@@ -12,5 +12,46 @@
 
   </div>
 
-
+  <div style="width: 400px;">
+    <canvas id="myChart" width="200" height="200"></canvas>
+  </div>
 </div>
+
+
+<%
+
+  a = Article.all.group_by { |m| m.created_at.beginning_of_month }
+
+  labeles = []
+  counters = []
+
+  a.each do |k, v|
+    labeles << k.strftime('%B')
+    counters << v.count
+  end
+
+
+
+  %>
+
+
+
+
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <%= raw labeles %>,
+            datasets: [{
+                label: '# of articles per month',
+                data: <%= raw counters %>,
+                borderWidth: 1
+            }]
+        },
+        options: {}
+    });
+
+</script>
