@@ -11,8 +11,7 @@ class ArticlesController < ApplicationController
     elsif current_user.ecm?
       @articles = Article.where(status: :basic)
     elsif current_user.referee?
-      #TODO to be done
-      @articles = []
+      @articles = Article.where(referee_1: current_user).or(Article.where(referee_2: current_user)).or(Article.where(referee_3: current_user))
     elsif current_user.director?
       @articles = Article.all
     else
@@ -91,7 +90,8 @@ class ArticlesController < ApplicationController
   def update_users_article
     @article = Article.find(params[:article_id])
 
-    @article.update_users_article(current_user, params[:status], params[:note])
+    @article.update_users_article(current_user, params[:status], params[:note], params[:referee_1_id],
+                                  params[:referee_2_id], params[:referee_3_id])
 
     respond_to do |format|
       format.html {redirect_to @article, notice: 'Article was successfully updated.'}
@@ -108,6 +108,7 @@ class ArticlesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:title, :abstract, :author, :status, :file, :position, :journal_id)
+    params.require(:article).permit(:title, :abstract, :author, :status, :file, :position, :journal_id,
+                                    :referee_1_id, :referee_2_id, :referee_3_id)
   end
 end

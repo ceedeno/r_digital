@@ -9,6 +9,11 @@
 
           <%= hidden_field_tag :status, :eca %>
 
+          <%= select_tag :referee_1_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+          <%= select_tag :referee_2_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+          <%= select_tag :referee_3_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+
+
           <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
 
       <% end %>
@@ -27,7 +32,7 @@
           <%= hidden_field_tag :status, :tcbec %>
           <%= text_area_tag :note %>
 
-          <%= f.submit 'Envair correción', class: 'btn btn-info' %>
+          <%= f.submit 'Enviar correción', class: 'btn btn-info' %>
 
       <% end %>
 
@@ -38,7 +43,7 @@
   <!-- Referees members -->
 
   <!-- Editorial comitee member -->
-  <% if current_user.referee? && !current_user.reviewed_article?(@article) && @article.eca? %>
+  <% if current_user.referee? && !current_user.reviewed_article?(@article) && @article.eca? && @article.selected_referees.include?(current_user) %>
 
       <!-- Approved -->
       <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
@@ -63,11 +68,30 @@
           <%= hidden_field_tag :status, :tcbr %>
           <%= text_area_tag :note %>
 
-          <%= f.submit 'Envair correción', class: 'btn btn-info' %>
+          <%= f.submit 'Enviar correción', class: 'btn btn-info' %>
 
       <% end %>
 
   <% end %>
+
+
+  <!-- Director -->
+  <% if current_user.director? && @article.eca? && !@article.referee_1 && !@article.referee_2 && !@article.referee_3 %>
+
+      <%= simple_form_for @article do |f| %>
+
+          <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+          <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+          <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+
+
+          <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+
+      <% end %>
+
+
+  <% end %>
+
 
 
 
@@ -81,7 +105,7 @@
 
   <% end %>
 
-  <div class="card" >
+  <div class="card">
     <div class="card-body">
       <h4 class="card-title"><%= @article.title %></h4>
       <p class="card-text"><%= @article.abstract %></p>
@@ -89,18 +113,27 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item fa fa-user"> &nbsp; <%= @article.author %></li>
       <li class="list-group-item fa fa-info-circle"> &nbsp; <%= @article.status %></li>
-    </ul>
-    <div class="card-body">
-      <li class="list-group-item "> &nbsp; <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip" %></li>
 
-      <li class="list-group-item "> &nbsp; <%= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>
+      <% @article.users_articles.each do |ua| %>
+          <% if ua.correction_note %>
+              <li class="list-group-item ">
+                <span class="fa fa-comment">&nbsp;<%= ua.correction_note %></span>
+                <br>
+                <span class="fa fa-user">&nbsp;<%= ua.user.role %></span>
+              </li>
+          <% end %>
+      <% end %>
 
-      <li class="list-group-item "> &nbsp; <%= link_to ' Back', articles_path, class: "fa fa-chevron-left" %> </li>
+      </ul>
+      <div class="card-body">
+        <li class="list-group-item "> &nbsp; <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip" %></li>
+
+        <li class="list-group-item "> &nbsp; <%= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>
+
+        <li class="list-group-item "> &nbsp; <%= link_to ' Back', articles_path, class: "fa fa-chevron-left" %> </li>
 
 
-
-
-    </div>
+      </div>
   </div>
 
 

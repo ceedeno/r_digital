@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014215932) do
+ActiveRecord::Schema.define(version: 20171015233706) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20171014215932) do
     t.string "file_name"
     t.integer "journal_id"
     t.integer "position", default: 0
+    t.integer "referee_1_id"
+    t.integer "referee_2_id"
+    t.integer "referee_3_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -73,6 +76,9 @@ ActiveRecord::Schema.define(version: 20171014215932) do
     t.integer "article_id"
     t.integer "status"
     t.text "correction_note"
+    t.integer "referee_1_id"
+    t.integer "referee_2_id"
+    t.integer "referee_3_id"
   end
 
 end

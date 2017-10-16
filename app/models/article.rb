@@ -1,6 +1,9 @@
 class Article < ApplicationRecord
   belongs_to :user
   belongs_to :journal
+  belongs_to :referee_1, class_name: 'User'
+  belongs_to :referee_2, class_name: 'User'
+  belongs_to :referee_3, class_name: 'User'
 
 
   has_many :users_articles, class_name: 'UsersArticle'
@@ -12,12 +15,14 @@ class Article < ApplicationRecord
 
   dragonfly_accessor :file
 
-  # editorial comitee approved, to correct by editorial comitee, to correct by referres
+  # eca: editorial comitee approved, to correct by editorial comitee, to correct by referres
   enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :published]
 
 
-  def update_users_article(user, article_status, note)
-    user_article = UsersArticle.new(user: user, article: self, status: article_status, correction_note: note)
+  def update_users_article(user, article_status, note, referee_1_id, referee_2_id, referee_3_id)
+
+    user_article = UsersArticle.new(user: user, article: self, status: article_status, correction_note: note,
+                                    referee_1_id: referee_1_id, referee_2_id: referee_2_id, referee_3_id: referee_3_id)
 
     users_articles << user_article
 
@@ -65,6 +70,24 @@ class Article < ApplicationRecord
 
 
   end
+
+
+  def suggested_referees
+    referees = []
+    users_articles.each do |ua|
+      referees << ua.referee_1
+      referees << ua.referee_2
+      referees << ua.referee_3
+    end
+
+    referees.uniq.compact
+
+  end
+
+  def selected_referees
+    [referee_1, referee_2, referee_3]
+  end
+
 
 
   private

@@ -1,6 +1,9 @@
 class UsersArticle < ApplicationRecord
   belongs_to :user
   belongs_to :article
+  belongs_to :referee_1, class_name: 'User'
+  belongs_to :referee_2, class_name: 'User'
+  belongs_to :referee_3, class_name: 'User'
 
   # uniqueness of (user_id, article_id) as primary_key
   validates :user_id, uniqueness: { scope: :article_id }
