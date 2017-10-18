@@ -1,1 +1,5 @@
 $('#journal-articles').html("<%= escape_javascript(render 'journals/articles', journal: @journal) %>")
+
+if ($('#journal_id').length) {
+    combine_pdfs();
+}

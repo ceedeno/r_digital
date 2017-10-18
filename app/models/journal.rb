@@ -4,10 +4,25 @@ class Journal < ApplicationRecord
 
   after_update :combine_pdfs
 
+  enum status: [:basic, :published]
+
+
+  def combined_pdfs_name
+    id.to_s +  '_combined.pdf'
+  end
 
   def combine_pdfs
 
-    file_root = Rails.root.join('public') + file_name.to_s
+
+     #root_name = id.to_s +  '_combined.pdf'
+
+    file_root = Rails.root.join('public') + combined_pdfs_name.to_s
+
+    #puts '+++++++++++++++++'
+    #puts file_root
+    #puts '+++++++++++++++++'
+
+
     File.delete(file_root) if File.exist?(file_root)
 
 
@@ -18,13 +33,11 @@ class Journal < ApplicationRecord
       pdf << CombinePDF.load(Rails.root.join('public').to_s + a.file.remote_url)
     end
 
-    #TODO remove any file if exist
+    #root_name = id.to_s +  '_combined.pdf'
 
-    root_name = id.to_s +  '_combined.pdf'
+    #update_attribute(:file_name, root_name)
 
-    update_attribute(:file_name, root_name)
-
-    pdf.save(Rails.root.join('public').to_s + '/' + root_name)
+    pdf.save(Rails.root.join('public').to_s + '/' + combined_pdfs_name)
 
   end
 

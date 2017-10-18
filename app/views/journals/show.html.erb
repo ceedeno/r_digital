@@ -1,85 +1,125 @@
-
 <div class="container-with-margin">
 
-<p>
-  <strong>Identifier:</strong>
-  <%= @journal.identifier %>
-</p>
 
-<p>
-  <strong>Editor:</strong>
-  <%= @journal.editor %>
-</p>
+  <% if current_user.director? && @journal.articles.count == 3 && @journal.basic? %>
 
-<p>
-  <strong>Publisher:</strong>
-  <%= @journal.publisher %>
-</p>
+      <%= link_to "Publicar <span class='fa fa-send'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :published}), method: :patch, remote: false, class: 'btn btn-primary' %>
 
-<p>
-  <strong>Indexing:</strong>
-  <%= @journal.indexing %>
-</p>
+  <% elsif current_user.director? && @journal.articles.count == 3 && @journal.published? %>
 
-<p>
-  <strong>Copyright:</strong>
-  <%= @journal.copyright %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @journal.subject %>
-</p>
-
-<p>
-  <strong>Others:</strong>
-  <%= @journal.others %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @journal.user %>
-</p>
-
-<%= hidden_field_tag 'journal', @journal.id, id: 'journal_id' %>
-<%= select_tag 'articles', options_from_collection_for_select(Article.all, 'id', 'title'), id: 'article_id_select' %>
-<%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
-<%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
-
-<br>
+      <%= link_to "Quitar publicación <span class='fa fa-undo'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :basic}), method: :patch, remote: false, class: 'btn btn-danger' %>
 
 
-<div id='journal-articles'>
-
-  <%= render 'articles', journal: @journal %>
-
-</div>
-
-<br>
+<% end %>
 
 
-<%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.file_name, target: :_blank %>
+  <p>
+    <strong>Identifier:</strong>
+    <%= @journal.identifier %>
+  </p>
+
+  <p>
+    <strong>Editor:</strong>
+    <%= @journal.editor %>
+  </p>
+
+  <p>
+    <strong>Publisher:</strong>
+    <%= @journal.publisher %>
+  </p>
+
+  <p>
+    <strong>Indexing:</strong>
+    <%= @journal.indexing %>
+  </p>
+
+  <p>
+    <strong>Copyright:</strong>
+    <%= @journal.copyright %>
+  </p>
+
+  <p>
+    <strong>Subject:</strong>
+    <%= @journal.subject %>
+  </p>
+
+  <p>
+    <strong>Others:</strong>
+    <%= @journal.others %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @journal.user %>
+  </p>
+
+
+  <p>
+    <strong>Status:</strong>
+    <%= @journal.status %>
+  </p>
+
+  <%= hidden_field_tag 'journal', @journal.id, id: 'journal_id' %>
+  <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title'), id: 'article_id_select' %>
+  <%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
+  <%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
+
+  <br>
+
+
+  <div id='journal-articles'>
+
+    <%= render 'articles', journal: @journal %>
+
+  </div>
+
+  <br>
+
+
+  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name, target: :_blank %>
 
 <%#= button_to 'Generar PDF', journal_combine_pdfs_path(@journal), method: :patch, remote: true %>
 
-<br>
+  <br>
 
-<div id="journal-pdfs-preview">
+  <div id="journal-pdfs-preview">
 
-  <iframe src='/web/viewer.html?file=<%= @journal&.file_name %>' class="article-pdf-viewer"></iframe>
+    <iframe src='/web/viewer.html?file=<%= @journal&.combined_pdfs_name %>' class="article-pdf-viewer"></iframe>
 
-</div>
-
-
+  </div>
 
 
-<%= link_to 'Edit', edit_journal_path(@journal) %> |
-<%= link_to 'Back', journals_path %>
+
+
+  <%= link_to 'Edit', edit_journal_path(@journal) %> |
+  <%= link_to 'Back', journals_path %>
 
 
 </div>
 
 <script>
+
+    function combine_pdfs() {
+
+        var journalId = $('#journal_id').val();
+
+
+        $.ajax({
+            type: 'PATCH',
+            url: '/journals/' + journalId + '/combine_pdfs',
+            dataType: 'script',
+            data: {
+                article: {
+                    journal_id: journalId
+                }
+            }
+        }).done(function () {
+            location.reload();
+        });
+
+
+    }
+
 
     function addArticleTojournal() {
         //console.log('hola');
@@ -98,25 +138,13 @@
             data: {
                 article: {
                     journal_id: journalId,
-                    position: position
+                    position: position,
+                    status: 'assigned_journal'
                 }
             }
-        }).done(function() {
-            $.ajax({
-                type: 'PATCH',
-                url: '/journals/' + journalId + '/combine_pdfs',
-                dataType: 'script',
-                data: {
-                    article: {
-                        journal_id: journalId
-                    }
-                }
-            });
+        }).done(function () {
+            combine_pdfs();
         });
-
-
-
-
 
     }
 

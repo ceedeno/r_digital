@@ -1,7 +1,8 @@
+<div class="d-block mx-auto" style="">
 
 <h1>Journals</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Identifier</th>
@@ -12,6 +13,7 @@
       <th>Subject</th>
       <th>Others</th>
       <th>User</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,9 +29,10 @@
         <td><%= journal.subject %></td>
         <td><%= journal.others %></td>
         <td><%= journal.user %></td>
-        <td><%= link_to 'Show', journal %></td>
-        <td><%= link_to 'Edit', edit_journal_path(journal) %></td>
-        <td><%= link_to 'Destroy', journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= journal.status %></td>
+        <td><%= link_to '', journal, class: 'fa fa-eye' %></td>
+        <td><%= link_to '', edit_journal_path(journal), class: 'fa fa-pencil' %></td>
+        <td><%= link_to '', journal, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fa fa-trash' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,4 +40,6 @@
 
 <br>
 
-<%= link_to 'New Journal', new_journal_path %>
+<%= link_to 'New Journal', new_journal_path, class: 'btn btn-primary' %>
+
+</div>

@@ -16,7 +16,7 @@ class Article < ApplicationRecord
   dragonfly_accessor :file
 
   # eca: editorial comitee approved, to correct by editorial comitee, to correct by referres
-  enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :published]
+  enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :assigned_journal, :published]
 
 
   def update_users_article(user, article_status, note, referee_1_id, referee_2_id, referee_3_id)
