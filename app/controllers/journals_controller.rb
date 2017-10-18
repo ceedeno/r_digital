@@ -5,10 +5,14 @@ class JournalsController < ApplicationController
   # GET /journals.json
   def index
 
-    if current_user.director?
-      @journals = Journal.all
+    if params[:term]
+      @journals = Journal.where(status: :published).joins(:articles).where('articles.key_words LIKE ?', "%#{params[:term]}%").uniq
     else
-      @journals = Journal.where(status: :published)
+      if current_user.director?
+        @journals = Journal.all
+      else
+        @journals = Journal.where(status: :published)
+      end
     end
 
   end
@@ -84,6 +88,6 @@ class JournalsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def journal_params
-    params.require(:journal).permit(:identifier, :editor, :publisher, :indexing, :copyright, :subject, :others, :file_name, :status, article_ids: [])
+    params.require(:journal).permit(:identifier, :editor, :publisher, :indexing, :copyright, :subject, :others, :file_name, :status, :term, article_ids: [])
   end
 end

@@ -1,6 +1,16 @@
 <div class="d-block mx-auto" style="">
 
-<h1>Journals</h1>
+
+
+  <%= form_tag(journals_path, method: :get) do %>
+      <%= text_field_tag :term %>
+      <%= submit_tag 'Search' %>
+  <% end %>
+
+
+  <hr>
+
+  <h1>Journals</h1>
 
 <table class="table">
   <thead>
