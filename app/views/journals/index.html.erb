@@ -4,15 +4,17 @@
 
   <%= form_tag(journals_path, method: :get) do %>
       <%= text_field_tag :term %>
-      <%= submit_tag 'Search' %>
-  <% end %>
+      <%= submit_tag 'Search', class: 'btn  btn-primary' %>
+      <%= link_to 'Ver todas', journals_path, class: 'btn  btn-info' %>
+
+<% end %>
 
 
   <hr>
 
   <h1>Journals</h1>
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Identifier</th>

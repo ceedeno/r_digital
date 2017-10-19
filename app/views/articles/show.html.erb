@@ -127,17 +127,19 @@
           <% end %>
       <% end %>
 
-      </ul>
-      <div class="card-body">
-        <li class="list-group-item "> &nbsp; <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip" %></li>
 
-        <!--<li class="list-group-item "> &nbsp; <%#= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>-->
+      <!--<li class="list-group-item "> &nbsp; <%#= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>-->
 
-        <li class="list-group-item "> &nbsp; <%= link_to ' Back', articles_path, class: "fa fa-chevron-left" %> </li>
+      <li class="list-group-item "> &nbsp; <%= link_to ' Back', articles_path, class: "fa fa-chevron-left btn btn-primary btn-block" %> </li>
+    </ul>
 
 
-      </div>
   </div>
+
+  <br>
+  <hr>
+
+   <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip btn btn-primary btn-block" %>
 
 
   <!--
@@ -189,8 +191,8 @@
   <iframe src='/web/viewer.html?file=<%= @article&.file&.remote_url %>' class="article-pdf-viewer"></iframe>
 
 
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-  <%= link_to 'Back', articles_path %>
+  <%#= link_to 'Edit', edit_article_path(@article) %>
+  <%#= link_to 'Back', articles_path %>
 
 
 </div>

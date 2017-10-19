@@ -1,9 +1,22 @@
-<% @journal.articles.each do |article| %>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"> Articulos</h4>
+    <p class="card-text">Articulos incluidos en esta revista</p>
+  </div>
+  <ul class="list-group list-group-flush">
 
-    <%= article.title %>   <%= article.position %>
 
-    <%= link_to "<span class='fa fa-remove'></span>".html_safe, article_path(id: article.id, article: {journal_id: 0, status: :approved}), method: :patch, remote: true, class: '', onclick: ""  %>
+    <% @journal.articles.each do |article| %>
 
-    <br>
+        <li class="list-group-item fa fa-">
+          <%= article.title %>   <%= article.position %>
+          <%= link_to "<span class='fa fa-remove'></span>".html_safe, article_path(id: article.id, article: {journal_id: 0, status: :approved}), method: :patch, remote: true, class: 'btn btn-danger', onclick: "" %>
+        </li>
 
-<% end %>
+        <br>
+
+    <% end %>
+
+  </ul>
+
+</div>

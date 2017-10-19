@@ -11,9 +11,7 @@
 
       <li class="nav-item"><%= link_to 'Journals', journals_path, class: 'nav-link' %></li>
 
-      <li><%= link_to 'Edit account', edit_user_registration_path, class: 'nav-link' %></li>
       <li><%= link_to 'Users', users_path, class: 'nav-link' %></li>
-      <li><%= link_to 'Sign out ('+ current_user.first_name + ')', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
 
 
     </ul>
@@ -21,19 +19,24 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" herf="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
+          <%= current_user&.first_name %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-          <% if current_user.first_name == 'first_name' %>
+          <%= link_to 'Edit account', edit_user_registration_path, class: 'dropdown-item' %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
 
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item" href="#">Separated link</a>
 
-          <% elsif current_user.first_name == 'otro_name' %>
-              <%= link_to 'nada', root_path, class: 'dropdown-item' %>
+          <% if false %>
+
+              <% if current_user.first_name == 'first_name' %>
+
+                  <a class="dropdown-item" href="#">TEST</a>
+
+              <% elsif current_user.first_name == 'otro_name' %>
+                  <%= link_to 'nada', root_path, class: 'dropdown-item' %>
+              <% end %>
+
           <% end %>
 
         </div>

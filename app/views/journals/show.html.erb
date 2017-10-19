@@ -10,54 +10,43 @@
       <%= link_to "Quitar publicación <span class='fa fa-undo'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :basic}), method: :patch, remote: false, class: 'btn btn-danger' %>
 
 
-<% end %>
+  <% end %>
+
+  <br>
+  <br>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"><%= @journal.identifier %></h4>
+      <p class="card-text"><%= @journal.editor %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item fa fa-"> Publisher: &nbsp; <%= @journal.publisher %></li>
+      <li class="list-group-item fa fa-"> Indexing:&nbsp;  <%= @journal.indexing %></li>
+
+      <li class="list-group-item fa fa-"> Copyright: &nbsp; <%= @journal.copyright %> </li>
+
+      <li class="list-group-item fa fa-"> Subject: &nbsp; <%= @journal.subject %> </li>
+
+      <li class="list-group-item fa fa-"> Others: &nbsp; <%= @journal.others %> </li>
+
+      <li class="list-group-item fa fa-"> User: &nbsp; <%= @journal.user %> </li>
 
 
-  <p>
-    <strong>Identifier:</strong>
-    <%= @journal.identifier %>
-  </p>
-
-  <p>
-    <strong>Editor:</strong>
-    <%= @journal.editor %>
-  </p>
-
-  <p>
-    <strong>Publisher:</strong>
-    <%= @journal.publisher %>
-  </p>
-
-  <p>
-    <strong>Indexing:</strong>
-    <%= @journal.indexing %>
-  </p>
-
-  <p>
-    <strong>Copyright:</strong>
-    <%= @journal.copyright %>
-  </p>
-
-  <p>
-    <strong>Subject:</strong>
-    <%= @journal.subject %>
-  </p>
-
-  <p>
-    <strong>Others:</strong>
-    <%= @journal.others %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= @journal.user %>
-  </p>
+      <li class="list-group-item fa fa-"> Status: &nbsp; <%= @journal.status %> </li>
 
 
-  <p>
-    <strong>Status:</strong>
-    <%= @journal.status %>
-  </p>
+      <!--<li class="list-group-item "> &nbsp; <%#= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>-->
+
+      <li class="list-group-item "> &nbsp; <%= link_to ' Back', journals_path, class: " btn btn-primary btn-block fa fa-chevron-left" %> </li>
+    </ul>
+
+
+  </div>
+
+  <br>
+  <hr>
+
 
   <%= hidden_field_tag 'journal', @journal.id, id: 'journal_id' %>
   <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title'), id: 'article_id_select' %>
@@ -65,7 +54,6 @@
   <%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
 
   <br>
-
 
   <div id='journal-articles'>
 
@@ -76,7 +64,13 @@
   <br>
 
 
-  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name, target: :_blank %>
+  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name, target: :_blank, class: 'btn btn-block btn-primary' %>
+
+
+  <br><br>
+  <h4>Preview</h4>
+
+  <hr>
 
 <%#= button_to 'Generar PDF', journal_combine_pdfs_path(@journal), method: :patch, remote: true %>
 
@@ -91,8 +85,8 @@
 
 
 
-  <%= link_to 'Edit', edit_journal_path(@journal) %> |
-  <%= link_to 'Back', journals_path %>
+  <%#= link_to 'Edit', edit_journal_path(@journal) %>
+  <%#= link_to 'Back', journals_path %>
 
 
 </div>
