@@ -5,8 +5,17 @@ class VisitorsController < ApplicationController
   end
 
 
+  def statistics
+
+  end
+
+
   def iframe
     
   end
+
+
+
+
 
 end
