@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020205634) do
+ActiveRecord::Schema.define(version: 20171020215416) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20171020205634) do
     t.datetime "updated_at", null: false
     t.string "file_name", default: ""
     t.integer "status", default: 0
+    t.string "cover_uid"
   end
 
   create_table "users", force: :cascade do |t|

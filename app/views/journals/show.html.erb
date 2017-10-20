@@ -47,12 +47,13 @@
   <br>
   <hr>
 
-
   <%= hidden_field_tag 'journal', @journal.id, id: 'journal_id' %>
-  <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title'), id: 'article_id_select' %>
-  <%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
-  <%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
+  <% if @journal.articles.count < 3 %>
+      <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title'), id: 'article_id_select' %>
+      <%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
+      <%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
 
+  <% end %>
   <br>
 
   <div id='journal-articles'>
@@ -64,7 +65,7 @@
   <br>
 
 
-  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name, target: :_blank, class: 'btn btn-block btn-primary' %>
+  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name + '&_=' + Time.now.to_s, target: :_blank, class: 'btn btn-block btn-primary' %>
 
 
   <br><br>
@@ -78,7 +79,7 @@
 
   <div id="journal-pdfs-preview">
 
-    <iframe src='/web/viewer.html?file=<%= @journal&.combined_pdfs_name %>' class="article-pdf-viewer"></iframe>
+    <iframe src='/web/viewer.html?file=<%= @journal&.combined_pdfs_name.to_s + '&_=' + Time.now.to_s %>' class="article-pdf-viewer"></iframe>
 
   </div>
 
