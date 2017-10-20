@@ -3,17 +3,17 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to 'Home', root_path, class: 'nav-link' %>
+        <%= link_to 'Inicio', root_path, class: 'nav-link' %>
       </li>
 
 
-      <li class="nav-item"><%= link_to 'Articles', articles_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Artículos', articles_path, class: 'nav-link' %></li>
 
-      <li class="nav-item"><%= link_to 'Journals', journals_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Revistas', journals_path, class: 'nav-link' %></li>
 
-      <li><%= link_to 'Users', users_path, class: 'nav-link' %></li>
+      <li><%= link_to 'Usuarios', users_path, class: 'nav-link' %></li>
 
-      <li><%= link_to 'Statistics', statistics_path, class: 'nav-link' %></li>
+      <li><%= link_to 'Estadísticas', statistics_path, class: 'nav-link' %></li>
 
 
     </ul>
@@ -25,8 +25,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-          <%= link_to 'Edit account', edit_user_registration_path, class: 'dropdown-item' %>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          <%= link_to 'Configurar cuenta', edit_user_registration_path, class: 'dropdown-item' %>
+          <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
 
 
           <% if false %>

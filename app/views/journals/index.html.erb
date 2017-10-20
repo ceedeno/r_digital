@@ -3,7 +3,7 @@
 
   <%= form_tag(journals_path, method: :get) do %>
       <%= text_field_tag :term %>
-      <%= submit_tag 'Search', class: 'btn  btn-primary' %>
+      <%= submit_tag 'Buscar', class: 'btn  btn-primary' %>
       <%= link_to 'Ver todas', journals_path, class: 'btn  btn-info' %>
 
   <% end %>
@@ -11,20 +11,20 @@
 
   <hr>
 
-  <h1>Journals</h1>
+  <h1>Revistas</h1>
 
   <table class="table table-hover">
     <thead>
     <tr>
-      <th>Identifier</th>
-      <th>Editor</th>
-      <th>Publisher</th>
-      <th>Indexing</th>
-      <th>Copyright</th>
-      <th>Subject</th>
-      <th>Others</th>
-      <th>User</th>
-      <th>Status</th>
+      <th><%= t('identifier', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('editor', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('publisher', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('indexing', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('copyright', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('subject', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('others', scope: [:activerecord, :attributes, :journal])  %></th>
+      <th><%= t('user')  %></th>
+      <th><%= t('status')  %></th>
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -40,7 +40,7 @@
           <td><%= journal.subject %></td>
           <td><%= journal.others %></td>
           <td><%= journal.user %></td>
-          <td><%= journal.status %></td>
+          <td><%= t(journal.status) %></td>
           <td><%= link_to '', journal, class: 'fa fa-eye' %></td>
           <% if current_user.director? %>
               <td><%= link_to '', edit_journal_path(journal), class: 'fa fa-pencil' %></td>
@@ -53,6 +53,6 @@
 
   <br>
 
-  <%= link_to 'New Journal', new_journal_path, class: 'btn btn-primary' %>
+  <%= link_to 'Crear nueva revista', new_journal_path, class: 'btn btn-primary' %>
 
 </div>

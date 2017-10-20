@@ -21,24 +21,24 @@
       <p class="card-text"><%= @journal.editor %></p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item fa fa-"> Publisher: &nbsp; <%= @journal.publisher %></li>
-      <li class="list-group-item fa fa-"> Indexing:&nbsp;  <%= @journal.indexing %></li>
+      <li class="list-group-item fa fa-"> <%= t('publisher', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.publisher %></li>
+      <li class="list-group-item fa fa-"> <%= t('indexing', scope: [:activerecord, :attributes, :journal])  %>:&nbsp;  <%= @journal.indexing %></li>
 
-      <li class="list-group-item fa fa-"> Copyright: &nbsp; <%= @journal.copyright %> </li>
+      <li class="list-group-item fa fa-"> <%= t('copyright', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.copyright %> </li>
 
-      <li class="list-group-item fa fa-"> Subject: &nbsp; <%= @journal.subject %> </li>
+      <li class="list-group-item fa fa-"> <%= t('subject', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.subject %> </li>
 
-      <li class="list-group-item fa fa-"> Others: &nbsp; <%= @journal.others %> </li>
+      <li class="list-group-item fa fa-"> <%= t('others', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.others %> </li>
 
-      <li class="list-group-item fa fa-"> User: &nbsp; <%= @journal.user %> </li>
+      <li class="list-group-item fa fa-"> <%= t('user')  %>: &nbsp; <%= @journal.user %> </li>
 
 
-      <li class="list-group-item fa fa-"> Status: &nbsp; <%= @journal.status %> </li>
+      <li class="list-group-item fa fa-"> <%= t('status')  %>: &nbsp; <%= @journal.status %> </li>
 
 
       <!--<li class="list-group-item "> &nbsp; <%#= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>-->
 
-      <li class="list-group-item "> &nbsp; <%= link_to ' Back', journals_path, class: " btn btn-primary btn-block fa fa-chevron-left" %> </li>
+      <li class="list-group-item "> &nbsp; <%= link_to  ' Volver ', journals_path, class: " btn btn-primary btn-block fa fa-chevron-left" %> </li>
     </ul>
 
 
@@ -51,7 +51,7 @@
   <% if @journal.articles.count < 3 %>
       <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title'), id: 'article_id_select' %>
       <%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
-      <%= button_tag 'submit', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
+      <%= button_tag 'Agregar articulo', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
 
   <% end %>
   <br>
@@ -69,7 +69,7 @@
 
 
   <br><br>
-  <h4>Preview</h4>
+  <h4>Vista previa</h4>
 
   <hr>
 

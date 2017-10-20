@@ -21,3 +21,79 @@
 
 en:
   hello: "Hello world"
+  user: Usuario
+  status: Estado
+  basic: Inicial
+  published: Publicado
+  back: Volver
+
+
+
+  activerecord:
+    models:
+      journal:
+        one: Revista
+        other: Revistas
+      article:
+        one: Artículo
+        other: Artículos
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      journal:
+        identifier: ISSN
+        editor: Director
+        publisher: Editorial
+        indexing: ISSNV
+        copyright:  Derecho de autor
+        subject: Tema
+        others: Otros
+        cover: Portada
+      article:
+        title: Título
+        abstract: Resumen
+        author: Autores
+        status: Estado
+        file: Archivo PDF
+        key_words: Palabras claves
+      user:
+        role:
+          one: Rol
+          other: Roles
+          basic: Usuario registrado
+          adviser: Asesor
+          referee: Árbitro
+          tmdcm: Miembro del Comité de Redacción y Gestión Técnica
+          ecm: Miembro del Comité Editorial
+          director: Director
+
+
+  simple_form:
+    "yes": 'Si'
+    "no": 'No'
+    required:
+      text: 'Requerido'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Por favor revisa los siguientes problemas:"
+
+    labels:
+      startup:
+        #public_equity_table: 'Mostrar/Ocultar la tabla de propiedad'
+
+  helpers:
+    submit:
+      journal:
+        create: "Crear nueva revista"
+        update: "Guardar"
+      article:
+        create: "Crear nuevo artículo"
+        update: "Guardar"
+      user:
+        create: "Crear usuario"
+        update: "Guardar"
+    options:
