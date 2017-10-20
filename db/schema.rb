@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018015859) do
+ActiveRecord::Schema.define(version: 20171020205634) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20171018015859) do
     t.integer "referee_1_id"
     t.integer "referee_2_id"
     t.integer "referee_3_id"
+    t.boolean "checked_by_director", default: false
   end
 
 end

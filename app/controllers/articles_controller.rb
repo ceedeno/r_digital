@@ -99,6 +99,16 @@ class ArticlesController < ApplicationController
 
   end
 
+  def update_correction_note
+    @article = Article.find(params[:article_id])
+    @users_article = UsersArticle.find(params[:users_article_id])
+    @users_article.update_attributes(correction_note: params[:correction_note], checked_by_director: true )
+
+    respond_to do |format|
+      format.html {redirect_to @article, notice: '¡Revision enviada con éxito!'}
+    end
+
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
