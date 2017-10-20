@@ -3,8 +3,12 @@ class Journal < ApplicationRecord
   has_many :articles, -> {order(position: :asc)}
 
   after_update :combine_pdfs
+  after_create :combine_pdfs
+
 
   enum status: [:basic, :published]
+
+  dragonfly_accessor :cover
 
 
   def combined_pdfs_name
@@ -27,6 +31,10 @@ class Journal < ApplicationRecord
 
 
     pdf = CombinePDF.new
+
+    if cover
+      pdf << CombinePDF.load(Rails.root.join('public').to_s + cover.remote_url)
+    end
 
     articles.each do |a|
       #puts a.title
