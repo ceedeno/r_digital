@@ -26,7 +26,7 @@
           <% end %>
 
           <% if current_user.director? && article.rejected? %>
-              <td><%= link_to '', article, method: :delete, data: {confirm: 'Are you sure?'}, class: 'fa fa-trash' %></td>
+              <td><%= link_to '', article, method: :delete, data: {confirm: '¿Estás seguro?'}, class: 'fa fa-trash' %></td>
           <% end %>
 
         </tr>

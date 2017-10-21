@@ -3,11 +3,11 @@
 
   <% if current_user.director? && @journal.articles.count == 3 && @journal.basic? %>
 
-      <%= link_to "Publicar <span class='fa fa-send'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :published}), method: :patch, remote: false, class: 'btn btn-primary' %>
+      <%= link_to "Publicar <span class='fa fa-send'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :published}), method: :patch, remote: false, class: 'btn btn-primary', data: { confirm: '¿Estás seguro que quieres publicar la revista?'} %>
 
   <% elsif current_user.director? && @journal.articles.count == 3 && @journal.published? %>
 
-      <%= link_to "Quitar publicación <span class='fa fa-undo'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :basic}), method: :patch, remote: false, class: 'btn btn-danger' %>
+      <%= link_to "Quitar publicación <span class='fa fa-undo'></span>".html_safe, journal_path(id: @journal.id, journal: {status: :basic}), method: :patch, remote: false, class: 'btn btn-danger', data: { confirm: '¿Estás seguro que quieres quitar la publicación?'} %>
 
 
   <% end %>

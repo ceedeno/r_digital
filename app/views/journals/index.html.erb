@@ -44,7 +44,7 @@
           <td><%= link_to '', journal, class: 'fa fa-eye' %></td>
           <% if current_user.director? %>
               <td><%= link_to '', edit_journal_path(journal), class: 'fa fa-pencil' %></td>
-              <td><%= link_to '', journal, method: :delete, data: {confirm: 'Are you sure?'}, class: 'fa fa-trash' %></td>
+              <td><%= link_to '', journal, method: :delete, data: {confirm: '¿Estás seguro?'}, class: 'fa fa-trash' %></td>
           <% end %>
         </tr>
     <% end %>

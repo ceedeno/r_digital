@@ -10,7 +10,9 @@
 
         <li class="list-group-item fa fa-">
           <%= article.title %>   <%= article.position %>
-          <%= link_to "<span class='fa fa-remove'></span>".html_safe, article_path(id: article.id, article: {journal_id: 0, status: :approved}), method: :patch, remote: true, class: 'btn btn-danger', onclick: "" %>
+          <% unless @journal.published? %>
+              <%= link_to "<span class='fa fa-remove'></span>".html_safe, article_path(id: article.id, article: {journal_id: 0, status: :approved}), method: :patch, remote: true, class: 'btn btn-danger', onclick: "" %>
+          <% end %>
         </li>
 
         <br>
