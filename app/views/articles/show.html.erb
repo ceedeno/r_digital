@@ -92,7 +92,34 @@
 
   <% end %>
 
+  <% if current_user.tmdcm? && @article.approved? %>
 
+      <%= simple_form_for @article do |f| %>
+
+          <% if @article.tmdcm_1.nil? && current_user != @article.tmdcm_2 %>
+              <%= f.input :tmdcm_1_review, as: :select, include_blank: false %>
+
+              <%= f.hidden_field :tmdcm_1_id, value: current_user.id %>
+
+              <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+
+              <hr>
+
+          <% elsif @article.tmdcm_2.nil? && current_user != @article.tmdcm_1 %>
+
+              <%= f.input :tmdcm_2_review, as: :select, include_blank: false %>
+
+              <%= f.hidden_field :tmdcm_2_id, value: current_user.id %>
+              <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+
+              <hr>
+          <% end %>
+
+
+      <% end %>
+
+
+  <% end %>
 
 
   <% if false %>
@@ -118,7 +145,7 @@
 
 
       <% @article.users_articles.each do |ua| %>
-          <% if ua.correction_note && (ua.user.ecm? || ua.checked_by_director? )%>
+          <% if ua.correction_note && (ua.user.ecm? || ua.checked_by_director?) %>
               <li class="list-group-item ">
                 <span class="fa fa-comment">&nbsp;<%= ua.correction_note %></span>
                 <br>
@@ -151,7 +178,7 @@
   <br>
   <hr>
 
-   <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip btn btn-primary btn-block" %>
+  <%= link_to ' Ver en el Navegador', @article&.file&.url, class: "fa fa-paperclip btn btn-primary btn-block" %>
 
 
   <!--

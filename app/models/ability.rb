@@ -47,6 +47,10 @@ class Ability
       article.user == user
     end
 
+    can [:update], Article do |article|
+      user.tmdcm?
+    end
+
     can [:update], Journal do |journal|
       user.director? || user.ecm? || user.referee?
     end

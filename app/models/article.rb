@@ -4,6 +4,9 @@ class Article < ApplicationRecord
   belongs_to :referee_1, class_name: 'User'
   belongs_to :referee_2, class_name: 'User'
   belongs_to :referee_3, class_name: 'User'
+  belongs_to :tmdcm_1, class_name: 'User'
+  belongs_to :tmdcm_2, class_name: 'User'
+
 
 
   has_many :users_articles, class_name: 'UsersArticle'

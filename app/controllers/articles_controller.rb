@@ -13,6 +13,8 @@ class ArticlesController < ApplicationController
       @articles = Article.where(status: :basic)
     elsif current_user.referee?
       @articles = Article.where(referee_1: current_user).or(Article.where(referee_2: current_user)).or(Article.where(referee_3: current_user))
+    elsif current_user.tmdcm?
+      @articles = Article.where(status: :approved)
     elsif current_user.director?
       @articles = Article.all
     else
@@ -103,7 +105,7 @@ class ArticlesController < ApplicationController
   def update_correction_note
     @article = Article.find(params[:article_id])
     @users_article = UsersArticle.find(params[:users_article_id])
-    @users_article.update_attributes(correction_note: params[:correction_note], checked_by_director: true )
+    @users_article.update_attributes(correction_note: params[:correction_note], checked_by_director: true)
 
     respond_to do |format|
       format.html {redirect_to @article, notice: '¡Revision enviada con éxito!'}
@@ -120,6 +122,7 @@ class ArticlesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
     params.require(:article).permit(:title, :abstract, :author, :status, :file, :position, :journal_id, :key_words,
-                                    :referee_1_id, :referee_2_id, :referee_3_id)
+                                    :referee_1_id, :referee_2_id, :referee_3_id, :tmdcm_1_id, :tmdcm_2_id,
+                                    :tmdcm_1_review, :tmdcm_2_review)
   end
 end

@@ -57,6 +57,8 @@ en:
         status: Estado
         file: Archivo PDF
         key_words: Palabras claves
+        tmdcm_1_review: ¿Dar el visto bueno?
+        tmdcm_2_review: ¿Dar el visto bueno?
         status:
             basic: Nuevo
             rejected: Rechazado

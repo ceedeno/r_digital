@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020215416) do
+ActiveRecord::Schema.define(version: 20171023032103) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -28,6 +28,10 @@ ActiveRecord::Schema.define(version: 20171020215416) do
     t.integer "referee_2_id"
     t.integer "referee_3_id"
     t.string "key_words"
+    t.integer "tmdcm_1_id"
+    t.integer "tmdcm_2_id"
+    t.boolean "tmdcm_1_review", default: false
+    t.boolean "tmdcm_2_review", default: false
   end
 
   create_table "journals", force: :cascade do |t|
