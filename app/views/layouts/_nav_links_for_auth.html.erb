@@ -21,6 +21,11 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
+
+      <% if current_user.admin? || current_user.director? %>
+          <li><%= link_to 'Configurar revista', edit_company_path(Company.first), class: 'nav-link' %></li>
+      <% end %>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" herf="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user&.first_name %>

@@ -45,6 +45,12 @@ en:
         one: Usuario
         other: Usuarios
     attributes:
+      company:
+        name: Nombre
+        electronic_issn: ISSN electrónico
+        creation_date: Fecha de fundación
+        legal_deposit: Depósito legal
+        indexing: Indexación
       journal:
         identifier: ISSN
         editor: Director
@@ -107,6 +113,9 @@ en:
 
   helpers:
     submit:
+      company:
+        create: "Crear nueva revista"
+        update: "Guardar"
       journal:
         create: "Crear nueva revista"
         update: "Guardar"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023032103) do
+ActiveRecord::Schema.define(version: 20171027230117) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20171023032103) do
     t.integer "tmdcm_2_id"
     t.boolean "tmdcm_1_review", default: false
     t.boolean "tmdcm_2_review", default: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "issn"
+    t.string "electronic_issn"
+    t.string "legal_deposit"
+    t.date "creation_date"
+    t.string "indexing"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "journals", force: :cascade do |t|

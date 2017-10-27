@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :companies, only: [:edit, :update, :show]
   resources :journals do
     patch 'combine_pdfs'
   end

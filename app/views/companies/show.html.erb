@@ -1,0 +1,25 @@
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"><%= @company.name %></h4>
+    <p class="card-text"><%= @company.issn %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item fa fa-"> ISSN electrónico:  <%= @company.electronic_issn %></li>
+    <li class="list-group-item fa fa-"> Depósito legal:  <%= @company.legal_deposit %></li>
+    <li class="list-group-item fa fa-"> Fecha de fundación:  <%= @company.creation_date %></li>
+    <li class="list-group-item fa fa-"> Indexación:  <%= @company.indexing %></li>
+
+    <li class="list-group-item">
+      <%= link_to 'Editar', edit_company_path(@company), class: 'btn btn-primary btn-block' %>
+      <%#= link_to 'Volver', companies_path, class: 'btn btn-info' %>
+    </li>
+
+  </ul>
+
+
+</div>
+
+
+
+
