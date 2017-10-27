@@ -64,16 +64,18 @@ en:
         tmdcm_1_review: ¿Dar el visto bueno?
         tmdcm_2_review: ¿Dar el visto bueno?
         status:
-            basic: Nuevo
-            rejected: Rechazado
-            eca: Aprovado por el Comité Editorial
-            tcbec: Corrección por el Comité Editorial
-            pending_review: Revisión pendiente
-            approved_by_referees: Aprobado por los árbitros
-            tcbr: Correción por árbitros
-            approved: Aprobado
-            assigned_journal: Asignado a una revista
-            published: Publicado
+          one: Estado
+          other: Estados
+          basic: Nuevo
+          rejected: Rechazado
+          eca: Aprovado por el Comité Editorial
+          tcbec: Corrección por el Comité Editorial
+          pending_review: Revisión pendiente
+          approved_by_referees: Aprobado por los árbitros
+          tcbr: Correción por árbitros
+          approved: Aprobado
+          assigned_journal: Asignado a una revista
+          published: Publicado
 
       user:
         role:
