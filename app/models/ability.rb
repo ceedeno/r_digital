@@ -32,7 +32,7 @@ class Ability
 
     user ||= User.new
 
-    if user.director?
+    if user.director? || user.admin?
       can :manage, :all
     else
       can :read, :all

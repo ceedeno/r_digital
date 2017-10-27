@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
       @articles = Article.where(referee_1: current_user).or(Article.where(referee_2: current_user)).or(Article.where(referee_3: current_user))
     elsif current_user.tmdcm?
       @articles = Article.where(status: :approved)
-    elsif current_user.director?
+    elsif current_user.director? || current_user.admin?
       @articles = Article.all
     else
       @articles = []

@@ -21,11 +21,11 @@
           <td><%= t(article.status, scope: [:activerecord, :attributes, :article, :status] ) %></td>
           <td><%= link_to '', article, class: 'fa fa-eye' %></td>
 
-          <% if article.user == current_user && (article.tcbec? || article.tcbr?) %>
+          <% if (article.user == current_user && (article.tcbec? || article.tcbr?)) || current_user.admin? %>
               <td><%= link_to '', edit_article_path(article), class: 'fa fa-pencil' %></td>
           <% end %>
 
-          <% if current_user.director? && article.rejected? %>
+          <% if current_user.director? && article.rejected? || current_user.admin? %>
               <td><%= link_to '', article, method: :delete, data: {confirm: '¿Estás seguro?'}, class: 'fa fa-trash' %></td>
           <% end %>
 

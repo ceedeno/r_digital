@@ -10,7 +10,7 @@ class JournalsController < ApplicationController
     if params[:term]
       @journals = Journal.where(status: :published).joins(:articles).where('articles.key_words LIKE ?', "%#{params[:term]}%").uniq
     else
-      if current_user.director?
+      if current_user.director? || current_user.admin?
         @journals = Journal.all
       else
         @journals = Journal.where(status: :published)

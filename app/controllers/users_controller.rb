@@ -34,6 +34,18 @@ class UsersController < ApplicationController
   end
 
 
+  def destroy
+    @user = User.find(params[:id])
+
+    @user.destroy
+
+    respond_to do |format|
+      format.html {redirect_to users_path, notice: '¡El usuario fue eliminado con éxito!'}
+      format.json {head :no_content}
+    end
+
+  end
+
   private
 
   def user_params

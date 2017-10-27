@@ -42,7 +42,7 @@
           <td><%= journal.user %></td>
           <td><%= t(journal.status) %></td>
           <td><%= link_to '', journal, class: 'fa fa-eye' %></td>
-          <% if current_user.director? %>
+          <% if current_user.director? || current_user.admin? %>
               <td><%= link_to '', edit_journal_path(journal), class: 'fa fa-pencil' %></td>
               <td><%= link_to '', journal, method: :delete, data: {confirm: '¿Estás seguro?'}, class: 'fa fa-trash' %></td>
           <% end %>

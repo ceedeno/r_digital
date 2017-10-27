@@ -1,3 +1,8 @@
 <td><%= user.first_name %></td>
-<td><%= user.email%></td>
-<td> <%= link_to '', edit_user_path(user), class: 'fa fa-pencil' %> </td>
+<td><%= user.email %></td>
+<td> <%= link_to '', edit_user_path(user), class: 'fa fa-pencil' %>
+
+  <% if current_user.admin? %>
+     &nbsp; &nbsp; <%= link_to '', user_path(user), method: :delete, class: 'fa fa-trash', data: { confirm: '¿Estás seguro que quieres eliminar este usuario?'}  %>
+<% end %>
+</td>
