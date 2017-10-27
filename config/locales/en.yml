@@ -27,6 +27,10 @@ en:
   published: Publicado
   back: Volver
 
+  unauthorized:
+    default: "Ha ocurrido un error."
+    manage:
+      all: "¡No tienes autorización para realizar esta acción!"
 
 
   activerecord:

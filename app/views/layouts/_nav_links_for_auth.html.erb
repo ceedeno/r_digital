@@ -11,10 +11,12 @@
 
       <li class="nav-item"><%= link_to 'Revistas', journals_path, class: 'nav-link' %></li>
 
-      <li><%= link_to 'Usuarios', users_path, class: 'nav-link' %></li>
+      <% if current_user.director? || current_user.admin? %>
+          <li><%= link_to 'Usuarios', users_path, class: 'nav-link' %></li>
 
-      <li><%= link_to 'Estadísticas', statistics_path, class: 'nav-link' %></li>
+          <li><%= link_to 'Estadísticas', statistics_path, class: 'nav-link' %></li>
 
+      <% end %>
 
     </ul>
 

@@ -1,7 +1,22 @@
 class UsersController < ApplicationController
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json {head :forbidden, content_type: 'text/html'}
+      format.html {
+        flash[:danger] = exception.message
+        redirect_to root_path
+      }
+      format.js {head :forbidden, content_type: 'text/html'}
+    end
+  end
+
+
   before_action :authenticate_user!
 
   def index
+    authorize! :users_index, :user
+
     @users = User.all
   end
 
