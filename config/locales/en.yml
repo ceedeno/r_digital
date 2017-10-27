@@ -36,8 +36,8 @@ en:
   activerecord:
     models:
       journal:
-        one: Revista
-        other: Revistas
+        one: Volumen
+        other: Volumenes
       article:
         one: Artículo
         other: Artículos
@@ -80,7 +80,7 @@ en:
           approved_by_referees: Aprobado por los árbitros
           tcbr: Correción por árbitros
           approved: Aprobado
-          assigned_journal: Asignado a una revista
+          assigned_journal: Asignado a un volumen
           published: Publicado
 
       user:
@@ -114,10 +114,10 @@ en:
   helpers:
     submit:
       company:
-        create: "Crear nueva revista"
+        create: "Crear nueva volumen"
         update: "Guardar"
       journal:
-        create: "Crear nueva revista"
+        create: "Crear nueva volumen"
         update: "Guardar"
       article:
         create: "Crear nuevo artículo"

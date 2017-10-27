@@ -67,7 +67,7 @@ class JournalsController < ApplicationController
   def update
     respond_to do |format|
       if @journal.update(journal_params)
-        format.html {redirect_to @journal, notice: '¡La revista fue actualizada con éxito!'}
+        format.html {redirect_to @journal, notice: '¡La volumen fue actualizada con éxito!'}
         format.json {render :show, status: :ok, location: @journal}
       else
         format.html {render :edit}

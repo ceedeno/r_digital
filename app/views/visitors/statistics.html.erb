@@ -12,7 +12,7 @@
 
 
   <div style="width: 400px; display: inline-block;">
-    <h3>Total revistas</h3>
+    <h3>Total volumenes</h3>
     <canvas id="myChart-3" width="200" height="200" style="display: inline-block;"></canvas>
   </div>
 
@@ -134,9 +134,9 @@
     var myBarChart3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['Total revistas', 'Revistas publicadas'],
+            labels: ['Total volumenes', 'Volumenes publicadas'],
             datasets: [{
-                label: '# Revistas',
+                label: '# Volumenes',
                 data: [<%= Journal.count %>, <%=Journal.where(status: :published).count%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -177,7 +177,7 @@
         data: {
             labels: ['Total usuarios', 'Usuarios con articulos publicados'],
             datasets: [{
-                label: '# Revistas',
+                label: '# Volumenes',
                 data: [<%= User.count %>, <%=User.joins(:articles).where('articles.status = ?', "8").count%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
