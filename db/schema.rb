@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027230117) do
+ActiveRecord::Schema.define(version: 20171027234437) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171027230117) do
     t.string "file_name", default: ""
     t.integer "status", default: 0
     t.string "cover_uid"
+    t.date "publication_date"
   end
 
   create_table "users", force: :cascade do |t|

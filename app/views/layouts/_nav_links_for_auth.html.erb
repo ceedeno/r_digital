@@ -23,7 +23,10 @@
     <ul class="navbar-nav ml-auto">
 
       <% if current_user.admin? || current_user.director? %>
-          <li><%= link_to 'Configurar revista', edit_company_path(Company.first), class: 'nav-link' %></li>
+
+          <% if Company.first %>
+              <li><%= link_to 'Configurar revista', edit_company_path(Company.first), class: 'nav-link' %></li>
+          <% end %>
       <% end %>
 
       <li class="nav-item dropdown">

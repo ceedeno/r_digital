@@ -23,7 +23,7 @@ en:
   hello: "Hello world"
   user: Usuario
   status: Estado
-  basic: Inicial
+  basic: En proceso
   published: Publicado
   back: Volver
 
@@ -52,7 +52,7 @@ en:
         legal_deposit: Depósito legal
         indexing: Indexación
       journal:
-        identifier: ISSN
+        identifier: Volumen
         editor: Director
         publisher: Editorial
         indexing: ISSNV
@@ -114,10 +114,10 @@ en:
   helpers:
     submit:
       company:
-        create: "Crear nueva volumen"
+        create: "Crear nuevo volumen"
         update: "Guardar"
       journal:
-        create: "Crear nueva volumen"
+        create: "Crear nuevo volumen"
         update: "Guardar"
       article:
         create: "Crear nuevo artículo"

@@ -22,15 +22,15 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item fa fa-"> <%= t('publisher', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.publisher %></li>
-      <li class="list-group-item fa fa-"> <%= t('indexing', scope: [:activerecord, :attributes, :journal])  %>:&nbsp;  <%= @journal.indexing %></li>
 
-      <li class="list-group-item fa fa-"> <%= t('copyright', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.copyright %> </li>
 
       <li class="list-group-item fa fa-"> <%= t('subject', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.subject %> </li>
 
       <li class="list-group-item fa fa-"> <%= t('others', scope: [:activerecord, :attributes, :journal])  %>: &nbsp; <%= @journal.others %> </li>
 
-      <li class="list-group-item fa fa-"> <%= t('user')  %>: &nbsp; <%= @journal.user %> </li>
+      <!--<li class="list-group-item fa fa-"> <%#= t('user')  %>: &nbsp; <%#= @journal.user %> </li>-->
+
+      <li class="list-group-item fa fa-"> Fecha de publicación: &nbsp; <%= @journal.publication_date %> </li>
 
 
       <li class="list-group-item fa fa-"> <%= t('status')  %>: &nbsp; <%= @journal.status %> </li>
