@@ -18,6 +18,8 @@ class Article < ApplicationRecord
 
   dragonfly_accessor :file
 
+  after_update :send_email
+
   # eca: editorial comitee approved, to correct by editorial comitee, to correct by referres
   enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :assigned_journal, :published]
 
@@ -95,5 +97,10 @@ class Article < ApplicationRecord
 
   private
 
+  def send_email
+    unless basic?
+      UserMailer.article_email(user, self).deliver_now
+    end
+  end
 
 end

@@ -1,0 +1,6 @@
+Estimado editor <%= @user.first_name %>
+=================================
+
+El estado de tu articulo titulado <%= @article.title %> fue actualizado a: <%= t(@article.status, scope: [:activerecord, :attributes, :article, :status]) %>
+
+
