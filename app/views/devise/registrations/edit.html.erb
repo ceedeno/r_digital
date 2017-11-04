@@ -1,11 +1,11 @@
 <div class="authform">
 
-  <h3>Edit <%= resource_name.to_s.humanize %></h3>
+  <h3>Editar </h3>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+        <%#= f.label :name %>
+        <%#= f.text_field :name, :autofocus => true, class: 'form-control' %>
       </div>
 
       <div class="form-group">
@@ -27,7 +27,7 @@
         <% end %>
       </div>
       <fieldset>
-        <p>Leave these fields blank if you don't want to change your password.</p>
+        <p>Deje éstos campos vacíos si no quiere cambiar la clave.</p>
         <div class="form-group">
           <%= f.label :password %>
           <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
@@ -38,13 +38,13 @@
         </div>
       </fieldset>
       <fieldset>
-        <p>You must enter your current password to make changes.</p>
+        <p>Debe ingresar la contraseña actual para hacer cambios</p>
         <div class="form-group">
           <%= f.label :current_password %>
           <%= f.password_field :current_password, class: 'form-control' %>
         </div>
       </fieldset>
-      <%= f.submit 'Update', :class => 'button right' %>
+      <%= f.submit 'Guardar', :class => '  btn-primary btn-block' %>
   <% end %>
 
 </div>

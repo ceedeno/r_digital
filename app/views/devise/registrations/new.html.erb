@@ -1,6 +1,6 @@
 <div class="authform">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => 'form'}) do |f| %>
-      <h3>Sign up</h3>
+      <h3>Registrarse</h3>
       <%= devise_error_messages! %>
       <div class="form-group">
         <%#= f.label :name %>
@@ -31,7 +31,7 @@
       </div>
 
       <br>
-      <%= f.submit 'Sign up', class: 'btn btn-primary btn-block' %>
+      <%= f.submit 'Registrarse', class: 'btn btn-primary btn-block' %>
   <% end %>
 
 </div>

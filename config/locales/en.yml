@@ -84,6 +84,13 @@ en:
           published: Publicado
 
       user:
+        name: Nombre
+        first_name: Primer nombre
+        last_name: Apellidos
+        email: Correo
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+        current_password: Contraseña actual
         role:
           one: Rol
           other: Roles
