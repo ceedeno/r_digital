@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027234437) do
+ActiveRecord::Schema.define(version: 20171104203957) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20171027234437) do
     t.integer "tmdcm_2_id"
     t.boolean "tmdcm_1_review", default: false
     t.boolean "tmdcm_2_review", default: false
+    t.date "referee_assigned_date"
   end
 
   create_table "companies", force: :cascade do |t|

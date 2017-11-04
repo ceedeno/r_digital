@@ -19,6 +19,7 @@ class Article < ApplicationRecord
   dragonfly_accessor :file
 
   after_update :send_email
+  after_update :set_referee_assigned_date
 
   # eca: editorial comitee approved, to correct by editorial comitee, to correct by referres
   enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :assigned_journal, :published]
@@ -99,7 +100,16 @@ class Article < ApplicationRecord
 
   def send_email
     unless basic?
-      UserMailer.article_email(user, self).deliver_now
+      UserMailer.article_email(user, self).deliver_later
+    end
+  end
+
+
+  def set_referee_assigned_date
+    if saved_change_to_referee_1_id? || saved_change_to_referee_2_id? || saved_change_to_referee_3_id?
+
+      update_attribute(:referee_assigned_date, Date.today)
+      #self.referee_assigned_date = Date.today
     end
   end
 

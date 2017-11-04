@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  REFEREE_MAX_DAYS = 1.days
+
   include Rails.application.routes.url_helpers
 
   # Include default devise modules. Others available are:
@@ -16,8 +18,34 @@ class User < ApplicationRecord
   enum role: [:basic, :adviser, :referee, :tmdcm, :ecm, :director, :admin]
 
 
+
+  after_update :check_something
+
   def reviewed_article?(article)
     reviewed_articles.include?(article)
+  end
+
+  def check_something
+
+    articles = Article.where(status: :eca).where('referee_assigned_date < ?', Date.today - REFEREE_MAX_DAYS )
+
+    articles.each do |a|
+      unless a.referee_reviewed_users.include?(a.referee_1)
+        UserMailer.referee_expire_notification(a.referee_1, a).deliver_later
+        a.referee_1 = nil
+      end
+      unless a.referee_reviewed_users.include?(a.referee_2)
+        UserMailer.referee_expire_notification(a.referee_2, a).deliver_later
+        a.referee_2 = nil
+      end
+      unless a.referee_reviewed_users.include?(a.referee_3)
+        UserMailer.referee_expire_notification(a.referee_3, a).deliver_later
+        a.referee_3 = nil
+      end
+
+      a.save
+    end
+
   end
 
 

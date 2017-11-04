@@ -4,4 +4,10 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.article_email(User.first, Article.first)
   end
 
+
+  def referee_expire_notification
+    UserMailer.referee_expire_notification(User.first, Article.first)
+
+  end
+
 end

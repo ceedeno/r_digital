@@ -76,16 +76,26 @@
 
 
   <!-- Director -->
-  <% if current_user.director? && @article.eca? && !@article.referee_1 && !@article.referee_2 && !@article.referee_3 %>
+  <% if current_user.director? && @article.eca? && (!@article.referee_1 || !@article.referee_2 || !@article.referee_3) %>
 
       <%= simple_form_for @article do |f| %>
 
-          <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
-          <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
-          <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+          <% unless @article.referee_1_id %>
+              <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+          <% end %>
+
+          <% unless @article.referee_2_id %>
+              <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+          <% end %>
+
+          <% unless @article.referee_3_id %>
+              <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+          <% end %>
 
 
-          <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+          <%= f.submit 'Enviar a los arbitros', class: 'btn btn-primary' %>
+
+          <hr>
 
       <% end %>
 
