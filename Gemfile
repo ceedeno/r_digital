@@ -13,6 +13,7 @@ gem 'dragonfly', '1.1.3'
 gem 'combine_pdf'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'cancancan', '~> 2.0'
+gem 'jquery-ui-rails', '6.0.1'
 
 
 group :development, :test do

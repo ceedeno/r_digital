@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :visitors, only: [:index]
 
   get 'iframe', to: 'visitors#iframe'
-  get 'statistics', to: 'visitors#statistics'
+  #get 'statistics', to: 'visitors#statistics'
+  resources :statistics, only: [:index]
 
 end

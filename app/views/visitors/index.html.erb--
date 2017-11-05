@@ -1,0 +1,24 @@
+<div class="mx-auto">
+  <br>
+  <%= image_tag 'logo_ula_bg.jpg', class: 'd-block mx-auto' %>
+
+
+  <br>
+  <div class="description-div">
+    <h2>Titulo del sistema</h2>
+
+    <p>Parrafo de descripcion largo</p>
+
+
+    Nombre de la revista: <%= Company&.first&.name %>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+

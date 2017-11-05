@@ -65,7 +65,7 @@
   <br>
 
 
-  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name + '&_=' + Time.now.to_s, target: :_blank, class: 'btn btn-block btn-primary' %>
+  <%= link_to 'Ver en el Navegador', "/web/viewer.html?file=" + @journal&.combined_pdfs_name + '?_=' + Time.now.to_s, target: :_blank, class: 'btn btn-block btn-primary' %>
 
 
   <br><br>
@@ -79,7 +79,7 @@
 
   <div id="journal-pdfs-preview">
 
-    <iframe src='/web/viewer.html?file=<%= @journal&.combined_pdfs_name.to_s + '&_=' + Time.now.to_s %>' class="article-pdf-viewer"></iframe>
+    <iframe src='/web/viewer.html?file=<%= @journal&.combined_pdfs_name.to_s + '?_=' + Time.now.to_s %>' class="article-pdf-viewer"></iframe>
 
   </div>
 

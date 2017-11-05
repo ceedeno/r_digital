@@ -1,0 +1,230 @@
+<div class="mx-auto">
+
+  <div class="row cen">
+
+    <div class="col-md-6">
+      <div class="card" style="width: 400px; display: inline-block;">
+        <h3>Articulos por mes</h3>
+        <canvas id="myChart" width="200" height="200" style="display: inline-block;"></canvas>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="card" style="width: 400px; display: inline-block;">
+        <h3>Total articulos</h3>
+        <canvas id="myChart-2" width="200" height="200" style="display: inline-block;"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <br><hr><br>
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <div class="card" style="width: 400px; display: inline-block;">
+        <h3>Total volumenes</h3>
+        <canvas id="myChart-3" width="200" height="200" style="display: inline-block;"></canvas>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="card" style="width: 400px; display: inline-block;">
+        <h3>Usuarios</h3>
+        <canvas id="myChart-4" width="200" height="200" style="display: inline-block;"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<%
+
+  a = Article.all.group_by {|m| m.created_at.beginning_of_month}
+
+  labeles = []
+  counters = []
+
+  a.each do |k, v|
+    labeles << k.strftime('%B')
+    counters << v.count
+  end
+
+
+%>
+
+
+
+
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <%= raw labeles %>,
+            datasets: [{
+                label: '# of articles',
+                data: <%= raw counters %>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    var ctx2 = document.getElementById("myChart-2").getContext('2d');
+
+    var myBarChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Total articulos'],
+            datasets: [{
+                label: '# articulos',
+                data: [<%= Article.count %>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    var ctx3 = document.getElementById("myChart-3").getContext('2d');
+
+    var myBarChart3 = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['Total volumenes', 'Volumenes publicadas'],
+            datasets: [{
+                label: '# Volumenes',
+                data: [<%= Journal.count %>, <%=Journal.where(status: :published).count%>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    var ctx4 = document.getElementById("myChart-4").getContext('2d');
+
+    var myBarChart4 = new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['Total usuarios', 'Con artículos publicados'],
+            datasets: [{
+                label: '# Usuarios',
+                data: [<%= User.count %>, <%=User.joins(:articles).where('articles.status = ?', "8").count%>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+</script>

@@ -1,4 +1,6 @@
-class VisitorsController < ApplicationController
+class StatisticsController < ApplicationController
+
+  before_action :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -12,24 +14,8 @@ class VisitorsController < ApplicationController
   end
 
 
-  layout false
-
   def index
+    authorize! :statistics, :user
 
   end
-
-
-  #def statistics
-  #  authorize! :statistics, :user
-  #end
-
-
-  def iframe
-    
-  end
-
-
-
-
-
 end
