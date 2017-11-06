@@ -8,3 +8,28 @@
 .navbar-nav{
   cursor: pointer;
 }
+
+
+
+#div_iframe {
+  border-style: inset;
+  border-color: grey;
+  overflow: hidden;
+  height: 259px;
+  width: 430px;
+}
+
+#myIframe {
+  width: 100%;
+  height: 1000%;   /* 10x the div height to embrace the whole page */
+}
+
+
+#myDiv{
+  //border-style: inset;
+  //border-color: grey;
+  height: 50px;
+  //overflow: scroll;
+  overflow-y: scroll;
+
+}

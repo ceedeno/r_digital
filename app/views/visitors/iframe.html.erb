@@ -1,3 +1,4 @@
+
 <div>
   PARENT
 
@@ -7,7 +8,61 @@
     another element
   </div>
 
-  <iframe src="http://nullrefer.com/?www.duckduckgo.com" scrolling="no" seamless="seamless"></iframe>
 
+  <div id="myDiv">
+    myDiv
+    <br>
+    myDiv
+    <br>    myDiv
+    <br>    myDiv
+    <br>    myDiv
+    <br>    myDiv
+    <br>    myDiv
+    <br>    myDiv
+    <br>    myDiv
+    <br>
+  </div>
+
+
+  <div id="div_iframe">
+  <iframe id="myIframe" src="http://nullrefer.com/?https://app.yoonla.com/optin-16925120" onLoad="hideiframeAndShowMessage()"  scrolling="" seamless="seamless"></iframe>
+  </div>
 
 </div>
+
+
+<script>
+
+    window.onbeforeunload = function(){
+        return false; // This will stop the redirecting.
+    };
+
+
+    var cont = 0;
+
+    function hideiframeAndShowMessage() {
+
+      console.log("hideiframeAndShowMessage", "cont: ", cont);
+
+      /*
+        if (cont > 1) {
+            $('#myIframe').hide();
+            alert("Revise su spam");
+        }
+
+        cont++;
+*/
+
+        $('#div_iframe')[0].scrollTop = 405;
+
+
+    }
+
+
+
+
+
+
+</script>
+
+
