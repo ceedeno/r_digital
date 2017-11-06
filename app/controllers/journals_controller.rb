@@ -53,7 +53,7 @@ class JournalsController < ApplicationController
 
     respond_to do |format|
       if @journal.save
-        format.html {redirect_to @journal, notice: 'Journal was successfully created.'}
+        format.html {redirect_to @journal, notice: '¡El volumen fue creado con éxito!'}
         format.json {render :show, status: :created, location: @journal}
       else
         format.html {render :new}
@@ -67,7 +67,7 @@ class JournalsController < ApplicationController
   def update
     respond_to do |format|
       if @journal.update(journal_params)
-        format.html {redirect_to @journal, notice: '¡La volumen fue actualizada con éxito!'}
+        format.html {redirect_to @journal, notice: '¡El volumen fue actualizado con éxito!'}
         format.json {render :show, status: :ok, location: @journal}
       else
         format.html {render :edit}
@@ -81,7 +81,7 @@ class JournalsController < ApplicationController
   def destroy
     @journal.destroy
     respond_to do |format|
-      format.html {redirect_to journals_url, notice: 'Journal was successfully destroyed.'}
+      format.html {redirect_to journals_url, notice: '¡El volumen fue eliminado con éxito!'}
       format.json {head :no_content}
     end
   end

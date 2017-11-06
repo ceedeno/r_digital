@@ -1,18 +1,18 @@
 <div class="mx-auto">
 
   <div style="width: 400px; display: inline-block;">
-    <h3>Articulos por mes</h3>
+    <h3>Articulos recibidos por mes</h3>
     <canvas id="myChart" width="200" height="200" style="display: inline-block;"></canvas>
   </div>
 
   <div style="width: 400px; display: inline-block;">
-    <h3>Total articulos</h3>
+    <h3>Total articulos recibidos</h3>
     <canvas id="myChart-2" width="200" height="200" style="display: inline-block;"></canvas>
   </div>
 
 
   <div style="width: 400px; display: inline-block;">
-    <h3>Total volumenes</h3>
+    <h3>Total volúmenes</h3>
     <canvas id="myChart-3" width="200" height="200" style="display: inline-block;"></canvas>
   </div>
 
@@ -55,7 +55,7 @@
         data: {
             labels: <%= raw labeles %>,
             datasets: [{
-                label: '# of articles',
+                label: '# artículos',
                 data: <%= raw counters %>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -93,9 +93,9 @@
     var myBarChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['Total articulos'],
+            labels: ['Total artículos'],
             datasets: [{
-                label: '# articulos',
+                label: '# artículos',
                 data: [<%= Article.count %>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -134,9 +134,9 @@
     var myBarChart3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['Total volumenes', 'Volumenes publicadas'],
+            labels: ['Total volúmenes', 'Volúmenes publicados'],
             datasets: [{
-                label: '# Volumenes',
+                label: '# Volúmenes',
                 data: [<%= Journal.count %>, <%=Journal.where(status: :published).count%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -175,9 +175,9 @@
     var myBarChart4 = new Chart(ctx4, {
         type: 'bar',
         data: {
-            labels: ['Total usuarios', 'Usuarios con articulos publicados'],
+            labels: ['Total usuarios', 'Con artículos publicados'],
             datasets: [{
-                label: '# Volumenes',
+                label: '# Usuarios',
                 data: [<%= User.count %>, <%=User.joins(:articles).where('articles.status = ?', "8").count%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
