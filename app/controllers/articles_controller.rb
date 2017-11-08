@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
     respond_to do |format|
       if @article.save
-        format.html {redirect_to @article, notice: 'Article was successfully created.'}
+        format.html {redirect_to @article, notice: '¡El artículo fue creado con éxito!'}
         format.json {render :show, status: :created, location: @article}
       else
         format.html {render :new}
@@ -82,7 +82,7 @@ class ArticlesController < ApplicationController
       #if @article.update(article_params.merge(user_id: current_user.id))
       if @article.update(article_params)
         @journal = @article.journal if @article.journal
-        format.html {redirect_to @article, notice: 'Article was successfully updated.'}
+        format.html {redirect_to @article, notice: '¡El artículo fue editado con éxito!'}
         format.js {}
         format.json {render :show, status: :ok, location: @article}
       else
@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html {redirect_to articles_url, notice: 'Article was successfully destroyed.'}
+      format.html {redirect_to articles_url, notice: '¡El artículo fue eliminado con éxito!'}
       format.json {head :no_content}
     end
   end
@@ -112,7 +112,7 @@ class ArticlesController < ApplicationController
                                   params[:referee_2_id], params[:referee_3_id])
 
     respond_to do |format|
-      format.html {redirect_to @article, notice: 'Article was successfully updated.'}
+      format.html {redirect_to @article, notice: '¡El artículo fue actualizado con éxito!.'}
     end
 
   end

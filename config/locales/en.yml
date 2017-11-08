@@ -60,6 +60,11 @@ en:
         subject: Tema
         others: Otros
         cover: Portada
+        status:
+          one: Status
+          other: Statuses
+          basic: En proceso
+          published: Publicado
       article:
         title: Título
         abstract: Resumen

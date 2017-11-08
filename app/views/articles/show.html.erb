@@ -4,73 +4,130 @@
   <!-- Editorial comitee member -->
   <% if current_user.ecm? && !current_user.reviewed_article?(@article) && @article.basic? %>
 
-      <!-- Approved -->
-      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Opciones de aprobación</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item fa "> &nbsp;
 
-          <%= hidden_field_tag :status, :eca %>
+            <!-- Approved -->
+            <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
 
-          <%= select_tag :referee_1_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
-          <%= select_tag :referee_2_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
-          <%= select_tag :referee_3_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+                <%= hidden_field_tag :status, :eca %>
+
+                <%= select_tag :referee_1_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+                <%= select_tag :referee_2_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+                <%= select_tag :referee_3_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+
+                &nbsp; &nbsp;
 
 
-          <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+                <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
 
-      <% end %>
+            <% end %>
+          </li>
 
-      <!-- Rejected -->
-      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+          <li class="list-group-item fa "> &nbsp;
 
-          <%= hidden_field_tag :status, :rejected_by_ec %>
-          <%= f.submit 'Rechazar', class: 'btn btn-danger' %>
+            <!-- Rejected -->
+            <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
 
-      <% end %>
+                <%= hidden_field_tag :status, :rejected_by_ec %>
+                <%= text_field_tag :note %>
 
-      <!-- -->
-      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+                &nbsp; &nbsp;
 
-          <%= hidden_field_tag :status, :tcbec %>
-          <%= text_area_tag :note %>
 
-          <%= f.submit 'Enviar correción', class: 'btn btn-info' %>
+                <%= f.submit 'Rechazar', class: 'btn btn-danger' %>
 
-      <% end %>
+            <% end %>
+
+          </li>
+
+          <li class="list-group-item fa "> &nbsp;
+
+            <!-- correction note -->
+            <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+                <%= hidden_field_tag :status, :tcbec %>
+                <%= text_field_tag :note %>
+
+                &nbsp; &nbsp;
+
+                <%= f.submit 'Enviar correción', class: 'btn btn-info' %>
+
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
 
   <% end %>
 
 
 
   <!-- Referees members -->
-
-  <!-- Editorial comitee member -->
   <% if current_user.referee? && !current_user.reviewed_article?(@article) && @article.eca? && @article.selected_referees.include?(current_user) %>
 
-      <!-- Approved -->
-      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Opciones de revisión</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item fa "> &nbsp;
 
-          <%= hidden_field_tag :status, :approved_by_referee %>
 
-          <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+            <!-- Approved -->
+            <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
 
-      <% end %>
+                <%= hidden_field_tag :status, :approved_by_referee %>
 
-      <!-- Rejected -->
-      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+                &nbsp;&nbsp;
+                <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
 
-          <%= hidden_field_tag :status, :rejected_by_r %>
-          <%= f.submit 'Rechazar', class: 'btn btn-danger' %>
+            <% end %>
 
-      <% end %>
+          </li>
 
-      <!-- -->
-      <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+          <li class="list-group-item fa "> &nbsp;
 
-          <%= hidden_field_tag :status, :tcbr %>
-          <%= text_area_tag :note %>
+            <!-- Rejected -->
+            <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
 
-          <%= f.submit 'Enviar correción', class: 'btn btn-info' %>
+                <%= hidden_field_tag :status, :rejected_by_r %>
+                <%= text_field_tag :note %>
 
-      <% end %>
+                &nbsp;&nbsp;
+
+                <%= f.submit 'Rechazar', class: 'btn btn-danger' %>
+
+            <% end %>
+          </li>
+
+          <li class="list-group-item fa "> &nbsp;
+
+            <!-- -->
+            <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
+
+                <%= hidden_field_tag :status, :tcbr %>
+                <%= text_field_tag :note %>
+
+                &nbsp;&nbsp;
+                <%= f.submit 'Enviar correción', class: 'btn btn-info' %>
+
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+
+      <br><br>
 
   <% end %>
 
@@ -78,56 +135,83 @@
   <!-- Director -->
   <% if current_user.director? && @article.eca? && (!@article.referee_1 || !@article.referee_2 || !@article.referee_3) %>
 
-      <%= simple_form_for @article do |f| %>
-
-          <% unless @article.referee_1_id %>
-              <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
-          <% end %>
-
-          <% unless @article.referee_2_id %>
-              <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
-          <% end %>
-
-          <% unless @article.referee_3_id %>
-              <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
-          <% end %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Selección de árbitros</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item fa "> &nbsp;
 
 
-          <%= f.submit 'Enviar a los arbitros', class: 'btn btn-primary' %>
+            <%= simple_form_for @article do |f| %>
 
-          <hr>
+                <% unless @article.referee_1_id %>
+                    <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+                <% end %>
 
-      <% end %>
+                <% unless @article.referee_2_id %>
+                    <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+                <% end %>
 
+                <% unless @article.referee_3_id %>
+                    <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+                <% end %>
+
+                &nbsp; &nbsp;
+
+                <%= f.submit 'Enviar a los arbitros', class: 'btn btn-primary' %>
+
+                </li>
+
+            <% end %>
+            </ul>
+      </div>
+
+      <br><br>
 
   <% end %>
 
+  <!-- Visto bueno -->
   <% if current_user.tmdcm? && @article.approved? %>
 
-      <%= simple_form_for @article do |f| %>
-
-          <% if @article.tmdcm_1.nil? && current_user != @article.tmdcm_2 %>
-              <%= f.input :tmdcm_1_review, as: :select, include_blank: false %>
-
-              <%= f.hidden_field :tmdcm_1_id, value: current_user.id %>
-
-              <%= f.submit 'Enviar', class: 'btn btn-primary' %>
-
-              <hr>
-
-          <% elsif @article.tmdcm_2.nil? && current_user != @article.tmdcm_1 %>
-
-              <%= f.input :tmdcm_2_review, as: :select, include_blank: false %>
-
-              <%= f.hidden_field :tmdcm_2_id, value: current_user.id %>
-              <%= f.submit 'Enviar', class: 'btn btn-primary' %>
-
-              <hr>
-          <% end %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Revisión de artículo</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item fa "> &nbsp;
 
 
-      <% end %>
+            <%= simple_form_for @article do |f| %>
 
+                <% if @article.tmdcm_1.nil? && current_user != @article.tmdcm_2 %>
+                    <%= f.input :tmdcm_1_review, as: :select, include_blank: false %>
+
+                    <%= f.hidden_field :tmdcm_1_id, value: current_user.id %>
+
+                    &nbsp;&nbsp;
+                    <%= f.submit 'Enviar', class: 'btn btn-primary btn-block' %>
+
+
+                <% elsif @article.tmdcm_2.nil? && current_user != @article.tmdcm_1 %>
+
+                    <%= f.input :tmdcm_2_review, as: :select, include_blank: false %>
+
+                    <%= f.hidden_field :tmdcm_2_id, value: current_user.id %>
+
+                    &nbsp;&nbsp;
+                    <%= f.submit 'Enviar', class: 'btn btn-primary btn-block' %>
+
+                <% end %>
+
+                </li>
+
+
+            <% end %>
+            </ul>
+      </div>
+
+      <br><br>
 
   <% end %>
 

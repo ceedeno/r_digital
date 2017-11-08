@@ -12,6 +12,11 @@
     <%= f.input :publication_date  %>
     <%= f.input :cover, as: :file %>
 
+    <% if current_user.admin? %>
+        <%= f.input :status, collection: Journal.statuses.keys.map {|role|
+          [t(role, scope: [:activerecord, :attributes, :journal, :status]), role]}, include_blank: false %>
+    <% end %>
+
     <%#= f.association :articles, as: :check_boxes  %>
     <%#= f.input :user %>
   </div>
