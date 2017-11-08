@@ -25,6 +25,11 @@ class Article < ApplicationRecord
   enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :assigned_journal, :published]
 
 
+
+  def title_and_key_words
+    title + ' (' + key_words + ' )'
+  end
+
   def update_users_article(user, article_status, note, referee_1_id, referee_2_id, referee_3_id)
 
     user_article = UsersArticle.new(user: user, article: self, status: article_status, correction_note: note,

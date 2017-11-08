@@ -49,7 +49,7 @@
 
   <%= hidden_field_tag 'journal', @journal.id, id: 'journal_id' %>
   <% if @journal.articles.count < 3 %>
-      <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title'), id: 'article_id_select' %>
+      <%= select_tag 'articles', options_from_collection_for_select(Article.where(status: :approved), 'id', 'title_and_key_words'), id: 'article_id_select' %>
       <%= text_field_tag 'position', '', id: 'article_position_text_field', type: 'number' %>
       <%= button_tag 'Agregar articulo', id: 'add_article_btn', onclick: "addArticleTojournal()" %>
 
