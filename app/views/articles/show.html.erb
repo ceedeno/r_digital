@@ -16,14 +16,17 @@
 
                 <%= hidden_field_tag :status, :eca %>
 
-                <%= select_tag :referee_1_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
-                <%= select_tag :referee_2_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
-                <%= select_tag :referee_3_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name') %>
+                <%= select_tag :referee_1_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name_and_speciality') %>
+                <br><br>
+                <%= select_tag :referee_2_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name_and_speciality') %>
+                <br><br>
+                <%= select_tag :referee_3_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name_and_speciality') %>
+                <br><br>
 
                 &nbsp; &nbsp;
 
 
-                <%= f.submit 'Aprobar', class: 'btn btn-primary' %>
+                <%= f.submit 'Aprobar', class: 'btn btn-primary btn-block' %>
 
             <% end %>
           </li>

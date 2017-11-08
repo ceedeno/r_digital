@@ -96,6 +96,14 @@ en:
         password: Contraseña
         password_confirmation: Confirmación de contraseña
         current_password: Contraseña actual
+        gender: Género
+        institution: Institución
+        phone: Telefóno
+        address: Dirección
+        country: País
+        bio: Biografía
+        web_site: Sitio web
+        speciality: Especialidad
         role:
           one: Rol
           other: Roles

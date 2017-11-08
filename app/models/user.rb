@@ -16,10 +16,15 @@ class User < ApplicationRecord
 
   # tmdcm: technical management draftinf comitee member,  ecm: editorial comitee member
   enum role: [:basic, :adviser, :referee, :tmdcm, :ecm, :director, :admin]
-
+  enum gender: [:masculino, :femenino]
 
 
   after_update :check_something
+
+
+  def first_name_and_speciality
+    String(first_name) + ' ' + String(last_name) + ' (' + String(speciality) + ' )'
+  end
 
   def reviewed_article?(article)
     reviewed_articles.include?(article)
