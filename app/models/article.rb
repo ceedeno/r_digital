@@ -27,7 +27,7 @@ class Article < ApplicationRecord
 
 
   def title_and_key_words
-    title + ' (' + key_words + ' )'
+    String(title) + ' (' + String(key_words) + ' )'
   end
 
   def update_users_article(user, article_status, note, referee_1_id, referee_2_id, referee_3_id)
