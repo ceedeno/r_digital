@@ -99,7 +99,7 @@ class Article < ApplicationRecord
   private
 
   def send_email
-    unless basic?
+    if approved? || rejected? || tcbec? || published?
       UserMailer.article_email(user, self).deliver_later
     end
   end
