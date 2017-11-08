@@ -79,7 +79,8 @@ class ArticlesController < ApplicationController
     @journal = @article.journal
 
     respond_to do |format|
-      if @article.update(article_params.merge(user_id: current_user.id))
+      #if @article.update(article_params.merge(user_id: current_user.id))
+      if @article.update(article_params)
         @journal = @article.journal if @article.journal
         format.html {redirect_to @article, notice: 'Article was successfully updated.'}
         format.js {}
