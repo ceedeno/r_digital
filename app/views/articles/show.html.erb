@@ -262,7 +262,10 @@
           <% end %>
 
       <% end %>
+      <% if (current_user.director? || current_user.admin?) && (@article.tmdcm_1_review? && @article.tmdcm_2_review?) %>
+      <li class="list-group-item fa fa-info-circle"> &nbsp; Visto Bueno</li>
 
+      <% end %>
 
       <!--<li class="list-group-item "> &nbsp; <%#= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>-->
 

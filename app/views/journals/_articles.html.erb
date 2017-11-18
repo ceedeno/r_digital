@@ -9,7 +9,7 @@
     <% @journal.articles.each do |article| %>
 
         <li class="list-group-item fa fa-">
-          <%= article.title %>   <%= article.position %>
+          <%= article.title %>   <b><%='(Posición ' + article.position.to_s + ')' %></b>
           <%= link_to ' Ver', article&.file&.url, class: "fa fa-paperclip btn btn-info " %>
 
           <% unless @journal.published? %>
