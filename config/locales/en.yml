@@ -69,6 +69,7 @@ en:
         title: Título
         abstract: Resumen
         author: Autores
+        language: Idioma
         status: Estado
         file: Archivo PDF
         key_words: Palabras claves
@@ -155,3 +156,11 @@ en:
         create: "Crear usuario"
         update: "Guardar"
     options:
+
+
+
+  errors:
+    messages:
+      blank: "no puede estar vacío"
+      present: "Debe estar presente"
+

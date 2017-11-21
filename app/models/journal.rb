@@ -13,6 +13,10 @@ class Journal < ApplicationRecord
   dragonfly_accessor :cover
 
 
+  validates :identifier, :editor, :cover, presence: :true
+
+
+
   def combined_pdfs_name
     id.to_s +  '_combined.pdf'
   end

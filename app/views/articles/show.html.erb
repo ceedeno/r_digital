@@ -288,6 +288,7 @@
 
       <li class="list-group-item fa fa-key"> &nbsp; <%= @article.key_words %></li>
 
+      <li class="list-group-item fa fa-globe"> &nbsp; <%= @article.language %></li>
 
       <% @article.users_articles.each do |ua| %>
           <% if ua.correction_note && !ua.correction_note.empty? && (ua.user.ecm? || ua.checked_by_director?)  %>

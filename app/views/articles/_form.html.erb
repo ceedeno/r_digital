@@ -6,6 +6,8 @@
       <%= f.input :abstract %>
       <%= f.input :author %>
       <%= f.input :key_words %>
+      <%= f.input :language %>
+
       <% if current_user.admin? %>
           <%= f.input :status, collection: Article.statuses.keys.map {|role|
             [t(role, scope: [:activerecord, :attributes, :article, :status]), role]}, include_blank: false %>
@@ -15,7 +17,7 @@
               <%= f.input :checked_as_corrected %>
       <% end %>
 
-      <%= f.input :file, as: :file %>
+      <%= f.input :file, as: :file, input_html: {accept:'.pdf'} %>
     </div>
 
     <div class="form-actions">

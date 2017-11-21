@@ -22,6 +22,10 @@ class User < ApplicationRecord
   after_update :check_something
 
 
+  validates :first_name, :last_name, :address, :institution, :bio, :phone, :country, presence: :true
+
+
+
   def first_name_and_speciality
     String(first_name) + ' ' + String(last_name) + ' (' + String(speciality) + ' )'
   end

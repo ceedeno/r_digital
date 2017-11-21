@@ -10,7 +10,7 @@
     <%= f.input :subject %>
     <%= f.input :others %>
     <%= f.input :publication_date  %>
-    <%= f.input :cover, as: :file %>
+    <%= f.input :cover, as: :file, input_html: {accept: '.pdf'} %>
 
     <% if current_user.admin? %>
         <%= f.input :status, collection: Journal.statuses.keys.map {|role|

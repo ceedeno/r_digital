@@ -27,6 +27,11 @@ class Article < ApplicationRecord
   # eca: editorial comitee approved, to correct by editorial comitee, to correct by referres
   enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :assigned_journal, :published]
 
+  validates :title, presence: :true
+  validates :abstract, presence: :true
+  validates :language, presence: :true
+  validates :file, presence: :true
+
 
 
   def title_and_key_words
