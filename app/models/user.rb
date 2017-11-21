@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  REFEREE_MAX_DAYS = 1.days
+  REFEREE_MAX_DAYS = 2.days
 
   include Rails.application.routes.url_helpers
 
