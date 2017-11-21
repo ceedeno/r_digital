@@ -149,15 +149,15 @@
             <%= simple_form_for @article do |f| %>
 
                 <% unless @article.referee_1_id %>
-                    <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+                    <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
                 <% end %>
 
                 <% unless @article.referee_2_id %>
-                    <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+                    <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
                 <% end %>
 
                 <% unless @article.referee_3_id %>
-                    <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name, u&.id]} %>
+                    <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
                 <% end %>
 
                 &nbsp; &nbsp;
