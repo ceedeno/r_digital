@@ -5,6 +5,8 @@ class Journal < ApplicationRecord
   after_update :combine_pdfs
   after_create :combine_pdfs
 
+  after_update :check_published
+
 
   enum status: [:basic, :published]
 
@@ -46,6 +48,22 @@ class Journal < ApplicationRecord
     #update_attribute(:file_name, root_name)
 
     pdf.save(Rails.root.join('public').to_s + '/' + combined_pdfs_name)
+
+  end
+
+
+
+  def check_published
+    if published?
+      articles.each do |a|
+        a.update_attribute(:status, :published)
+      end
+    else
+      articles.each do |a|
+        a.update_attribute(:status, :assigned_journal)
+      end
+
+    end
 
   end
 
