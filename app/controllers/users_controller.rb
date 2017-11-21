@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless @user == current_user or current_user.director?
+    unless @user == current_user or current_user.director? or current_user.admin?
       #redirect_to :back, :alert => "Access denied."
       redirect_back fallback_location: root_path, notice: 'No tienes acceso'
     end

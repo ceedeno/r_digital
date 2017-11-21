@@ -1,3 +1,19 @@
-<h3>Usuario</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<h3><%= @user.first_name  %></h3>
+<p>Appellidos: <%= @user.last_name  %></p>
+<p>Correo electrónico: <%= @user.email  %></p>
+
+<p>Telefóno: <%= @user.phone  %></p>
+<p>Dirección: <%= @user.address  %></p>
+<p>País: <%= @user.country  %></p>
+
+<p>Sitio web: <%= @user.web_site  %></p>
+
+<hr>
+
+<p>Resumen biográfico: <%= @user.bio  %></p>
+
+<p>Institución: <%= @user.institution  %></p>
+<p>Especialidad: <%= @user.speciality  %></p>
+
+
+<%=  link_to 'Volver', users_path, class: 'btn btn-info' %>

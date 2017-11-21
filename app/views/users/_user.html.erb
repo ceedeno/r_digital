@@ -1,10 +1,13 @@
 <td><%= user.first_name %></td>
 <td><%= user.email %></td>
 <td><%= t(user.role, scope: [:activerecord, :attributes, :user, :role]) %></td>
-<td>  <%= link_to '', edit_user_path(user), class: 'fa fa-pencil' %>
 
+<% if current_user.admin? %>
+    <td>  <%= link_to '', user, class: 'fa fa-eye' %>
 
-  <% if current_user.admin? %>
-     &nbsp; &nbsp; <%= link_to '', user_path(user), method: :delete, class: 'fa fa-trash', data: { confirm: '¿Estás seguro que quieres eliminar este usuario?'}  %>
+      &nbsp; &nbsp; <%= link_to '', edit_user_path(user), class: 'fa fa-pencil' %>
+
+      &nbsp; &nbsp; <%= link_to '', user_path(user), method: :delete, class: 'fa fa-trash', data: {confirm: '¿Estás seguro que quieres eliminar este usuario?'} %>
+
+    </td>
 <% end %>
-</td>
