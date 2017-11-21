@@ -7,3 +7,5 @@
 public/system/
 public/*.pdf
 *.pdf
+
+*.sqlite3

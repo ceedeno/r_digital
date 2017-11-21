@@ -138,6 +138,6 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :abstract, :author, :status, :file, :position, :journal_id, :key_words,
                                     :referee_1_id, :referee_2_id, :referee_3_id, :tmdcm_1_id, :tmdcm_2_id,
-                                    :tmdcm_1_review, :tmdcm_2_review)
+                                    :tmdcm_1_review, :tmdcm_2_review, :checked_as_corrected)
   end
 end

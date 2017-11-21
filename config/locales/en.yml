@@ -74,6 +74,7 @@ en:
         key_words: Palabras claves
         tmdcm_1_review: ¿Dar el visto bueno?
         tmdcm_2_review: ¿Dar el visto bueno?
+        checked_as_corrected: Enviar Corrección al Guardar
         status:
           one: Estado
           other: Estados
@@ -87,6 +88,14 @@ en:
           approved: Aprobado
           assigned_journal: Asignado
           published: Publicado
+      users_article:
+        status:
+          rejected_by_ec: Rechazado
+          rejected_by_r: Rechazado
+          eca: Aprobado
+          tcbec: Aprobado con Correción
+          approved_by_referee: Aprobado
+          tcbr: Aprobado con Corrección   
 
       user:
         name: Nombre

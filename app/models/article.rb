@@ -21,6 +21,9 @@ class Article < ApplicationRecord
   after_update :send_email
   after_update :set_referee_assigned_date
 
+
+  after_update :check_corrected
+
   # eca: editorial comitee approved, to correct by editorial comitee, to correct by referres
   enum status: [:basic, :rejected, :eca, :tcbec, :pending_review, :approved_by_referees, :tcbr, :approved, :assigned_journal, :published]
 
@@ -116,6 +119,28 @@ class Article < ApplicationRecord
       update_attribute(:referee_assigned_date, Date.today)
       #self.referee_assigned_date = Date.today
     end
+  end
+
+
+
+  def check_corrected
+    if tcbec? && checked_as_corrected
+      update_attributes(checked_as_corrected: false, status: :basic)
+      users_articles.each do |ua|
+          if ua.user.role == "ecm"
+             ua.destroy 
+          end
+      end
+    elsif tcbr? && checked_as_corrected
+      update_attributes(checked_as_corrected: false, status: :eca)
+      users_articles.each do |ua|
+          if ua.user.role == "referee"
+             ua.destroy 
+          end
+      end
+    end
+
+
   end
 
 end

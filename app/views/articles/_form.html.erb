@@ -11,6 +11,10 @@
             [t(role, scope: [:activerecord, :attributes, :article, :status]), role]}, include_blank: false %>
       <% end %>
 
+      <% if current_user.id == @article&.user&.id && (@article&.tcbec? || @article&.tcbr? )   %>
+              <%= f.input :checked_as_corrected %>
+      <% end %>
+
       <%= f.input :file, as: :file %>
     </div>
 
