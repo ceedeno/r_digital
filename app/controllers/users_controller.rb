@@ -15,17 +15,17 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    authorize! :users_index, :user
+    #authorize! :users_index, :user
 
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    unless @user == current_user or current_user.director? or current_user.admin?
+    #unless @user == current_user or current_user.director? or current_user.admin?
       #redirect_to :back, :alert => "Access denied."
-      redirect_back fallback_location: root_path, notice: 'No tienes acceso'
-    end
+    #  redirect_back fallback_location: root_path, notice: 'No tienes acceso'
+    #end
   end
 
   def edit

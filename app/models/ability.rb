@@ -38,6 +38,9 @@ class Ability
       can :read, :all
     end
 
+    can :users_index, User do
+      user.ecm?
+    end
 
     can [:new, :create], Article do |article|
       user
