@@ -21,7 +21,7 @@ class JournalsController < ApplicationController
   def index
 
     if params[:term]
-      @journals = Journal.where(status: :published).joins(:articles).where('articles.key_words LIKE ?', "%#{params[:term]}%").uniq
+      @journals = Journal.where(status: :published).joins(:articles).where('articles.key_words LIKE ? OR articles.title LIKE ? OR articles.author LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%" ).uniq
     else
       if current_user.director? || current_user.admin?
         @journals = Journal.all
