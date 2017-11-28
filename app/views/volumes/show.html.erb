@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @volume.number %>
+</p>
+
+<p>
+  <strong>Pages:</strong>
+  <%= @volume.pages %>
+</p>
+
+<p>
+  <strong>Creation date:</strong>
+  <%= @volume.creation_date %>
+</p>
+
+
+<p>
+  <strong>Números asociados:</strong>
+  <% @volume.journals.each do |j| %>
+    <li><%= j.identifier %></li>
+  <% end %>
+
+</p>
+
+
+<%= link_to 'Edit', edit_volume_path(@volume) %> |
+<%= link_to 'Back', volumes_path %>

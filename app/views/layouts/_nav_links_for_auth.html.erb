@@ -9,13 +9,17 @@
 
       <li class="nav-item"><%= link_to 'Artículos', articles_path, class: 'nav-link' %></li>
 
-      <li class="nav-item"><%= link_to 'Volumenes', journals_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Números', journals_path, class: 'nav-link' %></li>
 
       <% if current_user.director? || current_user.admin? || current_user.ecm? %>
           <li class="nav-item"><%= link_to 'Usuarios', users_path, class: 'nav-link' %></li>
 
+          <li class="nav-item"><%= link_to 'Volumenes', volumes_path, class: 'nav-link' %></li>
 
-      <% end %>
+
+    <% end %>
+
+
 
       <% if current_user.director? || current_user.admin? %>
 

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Volumes</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Pages</th>
+      <th>Creation date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @volumes.each do |volume| %>
+      <tr>
+        <td><%= volume.number %></td>
+        <td><%= volume.pages %></td>
+        <td><%= volume.creation_date %></td>
+        <td><%= link_to 'Show', volume %></td>
+        <td><%= link_to 'Edit', edit_volume_path(volume) %></td>
+        <td><%= link_to 'Destroy', volume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Volume', new_volume_path, class: 'btn btn-primary' %>

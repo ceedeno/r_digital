@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128173820) do
+ActiveRecord::Schema.define(version: 20171128175935) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171128173820) do
     t.integer "status", default: 0
     t.string "cover_uid"
     t.date "publication_date"
+    t.integer "volume_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -120,6 +121,14 @@ ActiveRecord::Schema.define(version: 20171128173820) do
     t.integer "referee_2_id"
     t.integer "referee_3_id"
     t.boolean "checked_by_director", default: false
+  end
+
+  create_table "volumes", force: :cascade do |t|
+    t.integer "number"
+    t.integer "pages"
+    t.date "creation_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

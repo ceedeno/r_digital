@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
 
 
-  validates :name, :issn, :address, :electronic_issn, :legal_deposit, presence: :true
+  validates :name, :issn, :electronic_issn, :legal_deposit, presence: :true
 
 
 

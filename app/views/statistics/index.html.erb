@@ -28,7 +28,7 @@
     <div class="col-md-6">
 
       <div class="card" style="width: 400px; display: inline-block;">
-        <h3>Total volumenes</h3>
+        <h3>Total números</h3>
         <canvas id="myChart-3" width="200" height="200" style="display: inline-block;"></canvas>
       </div>
     </div>
@@ -152,9 +152,9 @@
     var myBarChart3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['Total volumenes', 'Volumenes publicadas'],
+            labels: ['Total números', 'Números publicadas'],
             datasets: [{
-                label: '# Volumenes',
+                label: '# Números',
                 data: [<%= Journal.count %>, <%=Journal.where(status: :published).count%>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

@@ -1,0 +1,13 @@
+<%= simple_form_for(@volume) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :number %>
+    <%= f.input :pages %>
+    <%= f.input :creation_date %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

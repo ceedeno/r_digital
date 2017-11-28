@@ -1,5 +1,6 @@
 class Journal < ApplicationRecord
   belongs_to :user
+  belongs_to :volume
   has_many :articles, -> {order(position: :asc)}
 
   after_update :combine_pdfs

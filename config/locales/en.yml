@@ -36,8 +36,8 @@ en:
   activerecord:
     models:
       journal:
-        one: Volumen
-        other: Volumenes
+        one: Números
+        other: Números
       article:
         one: Artículo
         other: Artículos
@@ -52,7 +52,7 @@ en:
         legal_deposit: Depósito legal
         indexing: Indexación
       journal:
-        identifier: Volumen
+        identifier: Numero
         editor: Director
         publisher: Editorial
         indexing: ISSNV
@@ -96,7 +96,11 @@ en:
           eca: Aprobado
           tcbec: Aprobado con Correción
           approved_by_referee: Aprobado
-          tcbr: Aprobado con Corrección   
+          tcbr: Aprobado con Corrección
+      volume:
+        number: Número
+        pages: Páginas
+        creation_date: Fecha de creación
 
       user:
         name: Nombre
@@ -144,16 +148,19 @@ en:
   helpers:
     submit:
       company:
-        create: "Crear nuevo volumen"
+        create: "Crear nuevo número"
         update: "Guardar"
       journal:
-        create: "Crear nuevo volumen"
+        create: "Crear nuevo número"
         update: "Guardar"
       article:
         create: "Crear nuevo artículo"
         update: "Guardar"
       user:
         create: "Crear usuario"
+        update: "Guardar"
+      volume:
+        create: "Crear volumen"
         update: "Guardar"
     options:
 
