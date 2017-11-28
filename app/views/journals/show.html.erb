@@ -36,7 +36,7 @@
       <li class="list-group-item fa fa-"> Fecha de publicación: &nbsp; <%= @journal.publication_date %> </li>
 
 
-      <li class="list-group-item fa fa-"> <%= t('status') %>: &nbsp; <%= @journal.status %> </li>
+      <li class="list-group-item fa fa-"> <%= t('status') %>: &nbsp; <%= t(@journal.status, scope: [:activerecord, :attributes, :journal, :status]) %> </li>
 
 
       <!--<li class="list-group-item "> &nbsp; <%#= link_to ' Edit', edit_article_path(@article), class: "fa fa-pencil" %> </li>-->
