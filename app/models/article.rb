@@ -1,12 +1,13 @@
 class Article < ApplicationRecord
   belongs_to :user
   belongs_to :journal
-  belongs_to :referee_1, class_name: 'User'
-  belongs_to :referee_2, class_name: 'User'
-  belongs_to :referee_3, class_name: 'User'
+
+  #belongs_to :referee_1, class_name: 'User'
+  #belongs_to :referee_2, class_name: 'User'
+  #belongs_to :referee_3, class_name: 'User'
+
   belongs_to :tmdcm_1, class_name: 'User'
   belongs_to :tmdcm_2, class_name: 'User'
-
 
 
   has_many :users_articles, class_name: 'UsersArticle'
@@ -14,12 +15,17 @@ class Article < ApplicationRecord
   has_many :referee_reviewed_users, -> {where role: :referee}, through: :users_articles, source: :user
   has_many :ecm_reviewed_users, -> {where role: :ecm}, through: :users_articles, source: :user
 
-  default_scope { order('status DESC') }
+  has_one :selected_referee, dependent: :destroy
+  accepts_nested_attributes_for :selected_referee
+
+  default_scope {order('status DESC')}
 
   dragonfly_accessor :file
 
+  before_create :build_referee
+
   after_update :send_email
-  after_update :set_referee_assigned_date
+  #after_update :set_referee_assigned_date
 
 
   after_update :check_corrected
@@ -31,7 +37,6 @@ class Article < ApplicationRecord
   validates :abstract, presence: :true
   validates :language, presence: :true
   validates :file, presence: :true
-
 
 
   def title_and_key_words
@@ -108,7 +113,6 @@ class Article < ApplicationRecord
   end
 
 
-
   private
 
   def send_email
@@ -127,25 +131,29 @@ class Article < ApplicationRecord
   end
 
 
-
   def check_corrected
     if tcbec? && checked_as_corrected
       update_attributes(checked_as_corrected: false, status: :basic)
       users_articles.each do |ua|
-          if ua.user.role == "ecm"
-             ua.destroy 
-          end
+        if ua.user.role == "ecm"
+          ua.destroy
+        end
       end
     elsif tcbr? && checked_as_corrected
       update_attributes(checked_as_corrected: false, status: :eca)
       users_articles.each do |ua|
-          if ua.user.role == "referee"
-             ua.destroy 
-          end
+        if ua.user.role == "referee"
+          ua.destroy
+        end
       end
     end
 
 
+  end
+
+
+  def build_referee
+    build_selected_referee
   end
 
 end

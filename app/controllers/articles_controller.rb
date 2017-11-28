@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
 
-    if current_user.basic?
+    if current_user.basic? || current_user.advisor?
       @articles = current_user.articles
     elsif current_user.ecm?
       @articles = Article.where(status: :basic)
@@ -138,6 +138,7 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :abstract, :author, :status, :file, :position, :journal_id, :key_words,
                                     :referee_1_id, :referee_2_id, :referee_3_id, :tmdcm_1_id, :tmdcm_2_id,
-                                    :tmdcm_1_review, :tmdcm_2_review, :checked_as_corrected, :language)
+                                    :tmdcm_1_review, :tmdcm_2_review, :checked_as_corrected, :language,
+                                    selected_referee_attributes: [:id, :referee_1_id, :referee_2_id, :referee_3_id])
   end
 end

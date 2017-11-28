@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121211607) do
+ActiveRecord::Schema.define(version: 20171128151652) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20171121211607) do
     t.integer "status", default: 0
     t.string "cover_uid"
     t.date "publication_date"
+  end
+
+  create_table "selected_referees", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "referee_1_id"
+    t.integer "referee_2_id"
+    t.integer "referee_3_id"
+    t.date "referee_assigned_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

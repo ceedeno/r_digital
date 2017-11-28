@@ -148,16 +148,20 @@
 
             <%= simple_form_for @article do |f| %>
 
-                <% unless @article.referee_1_id %>
-                    <%= f.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
-                <% end %>
+                <%= f.simple_fields_for :selected_referee do |sr| %>
+                    <% unless @article.referee_1_id %>
+                        <%= sr.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
+                    <% end %>
 
-                <% unless @article.referee_2_id %>
-                    <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
-                <% end %>
 
-                <% unless @article.referee_3_id %>
-                    <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
+                    <% unless @article.referee_2_id %>
+                        <%= f.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
+                    <% end %>
+
+                    <% unless @article.referee_3_id %>
+                        <%= f.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
+                    <% end %>
+
                 <% end %>
 
                 &nbsp; &nbsp;
@@ -229,50 +233,50 @@
 
   <% end %>
 
-<% if current_user.director? || current_user.admin? %>
+  <% if current_user.director? || current_user.admin? %>
 
-<div class="card">
-    <div class="card-body">
+      <div class="card">
+        <div class="card-body">
 
-    Revisiones de ecm <br>
+          Revisiones de ecm <br>
 
-	<% @article.users_articles.each do |ua|  %>
+          <% @article.users_articles.each do |ua| %>
 
-		<% if ua.user.role == "ecm"	 %>
+              <% if ua.user.role == "ecm" %>
 
-		<%= ua.user.first_name %> :
+                  <%= ua.user.first_name %> :
 
-		<%=  t(ua.status, scope: [:activerecord, :attributes, :users_article, :status]) %>		
-		<br>
-		 <% end %>
+                  <%= t(ua.status, scope: [:activerecord, :attributes, :users_article, :status]) %>
+                  <br>
+              <% end %>
 
-	<% end %>
+          <% end %>
 
-    </div>
- </div>
+        </div>
+      </div>
 
 
-<div class="card">
-    <div class="card-body">
+      <div class="card">
+        <div class="card-body">
 
-    Revisiones de arbitros <br>
+          Revisiones de arbitros <br>
 
-	<% @article.users_articles.each do |ua|  %>
+          <% @article.users_articles.each do |ua| %>
 
-		<% if ua.user.role == "referee"	 %>
+              <% if ua.user.role == "referee" %>
 
-		<%= ua.user.first_name %> :
+                  <%= ua.user.first_name %> :
 
-		<%=  t(ua.status, scope: [:activerecord, :attributes, :users_article, :status]) %>		
-		<br>
-		 <% end %>
+                  <%= t(ua.status, scope: [:activerecord, :attributes, :users_article, :status]) %>
+                  <br>
+              <% end %>
 
-	<% end %>
+          <% end %>
 
-    </div>
- </div>
+        </div>
+      </div>
 
-<% end %>
+  <% end %>
 
 
 
@@ -284,14 +288,14 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item fa fa-user"> &nbsp; <%= @article.author %></li>
-      <li class="list-group-item fa fa-info-circle"> &nbsp; <%=  t(@article.status, scope: [:activerecord, :attributes, :article, :status]) %></li>
+      <li class="list-group-item fa fa-info-circle"> &nbsp; <%= t(@article.status, scope: [:activerecord, :attributes, :article, :status]) %></li>
 
       <li class="list-group-item fa fa-key"> &nbsp; <%= @article.key_words %></li>
 
       <li class="list-group-item fa fa-globe"> &nbsp; <%= @article.language %></li>
 
       <% @article.users_articles.each do |ua| %>
-          <% if ua.correction_note && !ua.correction_note.empty? && (ua.user.ecm? || ua.checked_by_director?)  %>
+          <% if ua.correction_note && !ua.correction_note.empty? && (ua.user.ecm? || ua.checked_by_director?) %>
               <li class="list-group-item ">
                 <span class="fa fa-comment">&nbsp;<%= ua.correction_note %></span>
                 <br>
@@ -312,7 +316,7 @@
 
       <% end %>
       <% if (current_user.director? || current_user.admin?) && (@article.tmdcm_1_review? || @article.tmdcm_2_review?) %>
-      <li class="list-group-item fa fa-check-circle"> &nbsp; Visto Bueno</li>
+          <li class="list-group-item fa fa-check-circle"> &nbsp; Visto Bueno</li>
 
       <% end %>
 
