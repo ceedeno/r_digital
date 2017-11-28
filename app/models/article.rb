@@ -51,7 +51,7 @@ class Article < ApplicationRecord
     rc = 0
     dc = 0
 
-    if basic?
+    if basic? || advisor?
       users_articles.each do |ua|
         ac += 1 if ua.eca?
         rc += 1 if ua.rejected_by_ec?
