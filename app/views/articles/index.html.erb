@@ -2,7 +2,7 @@
 
 <% if (current_user.admin? || current_user.director?) %>
   <h1>Artículos Registrados en el Sistema</h1>
-  <% elsif current_user.basic? || current_user.advisor? %>
+  <% elsif current_user.basic? || current_user.adviser? %>
     <h1>Mis Artículos</h1>
   <% else%>
     <h1>Artículos</h1>

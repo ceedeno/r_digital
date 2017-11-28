@@ -9,6 +9,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
+  delegate :last_name, :gender, :institution, :phone, :address, :country, :bio, :web_site, :speciality, to: :profile
+
+
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
   has_many :articles, dependent: :destroy
   has_many :journals, dependent: :destroy
   has_many :reviewed_users_articles, class_name: 'UsersArticle', dependent: :destroy
@@ -20,9 +26,11 @@ class User < ApplicationRecord
 
 
   after_update :check_something
+  before_create {build_profile}
 
 
-  validates :first_name, :last_name, :address, :institution, :bio, :phone, :country, presence: :true
+  #validates :first_name, :last_name, :address, :institution, :bio, :phone, :country, presence: :true
+  validates :first_name, presence: :true
 
 
 
@@ -39,17 +47,17 @@ class User < ApplicationRecord
     articles = Article.where(status: :eca).where('referee_assigned_date < ?', Date.today - REFEREE_MAX_DAYS )
 
     articles.each do |a|
-      unless a.referee_reviewed_users.include?(a.referee_1)
-        UserMailer.referee_expire_notification(a.referee_1, a).deliver_later
-        a.referee_1 = nil
+      unless a.referee_reviewed_users.include?(a&.selected_referee.referee_1)
+        UserMailer.referee_expire_notification(a&.selected_referee.referee_1, a).deliver_later
+        a&.selected_referee.referee_1 = nil
       end
-      unless a.referee_reviewed_users.include?(a.referee_2)
-        UserMailer.referee_expire_notification(a.referee_2, a).deliver_later
-        a.referee_2 = nil
+      unless a.referee_reviewed_users.include?(a&.selected_referee.referee_2)
+        UserMailer.referee_expire_notification(a&.selected_referee.referee_2, a).deliver_later
+        a&.selected_referee.referee_2 = nil
       end
-      unless a.referee_reviewed_users.include?(a.referee_3)
-        UserMailer.referee_expire_notification(a.referee_3, a).deliver_later
-        a.referee_3 = nil
+      unless a.referee_reviewed_users.include?(a&.selected_referee.referee_3)
+        UserMailer.referee_expire_notification(a&.selected_referee.referee_3, a).deliver_later
+        a&.selected_referee.referee_3 = nil
       end
 
       a.save

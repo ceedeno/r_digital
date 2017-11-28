@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
 
-    if current_user.basic? || current_user.advisor?
+    if current_user.basic? || current_user.adviser?
       @articles = current_user.articles
     elsif current_user.ecm?
       @articles = Article.where(status: :basic)

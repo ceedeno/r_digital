@@ -6,7 +6,7 @@ class SelectedReferee < ApplicationRecord
 
 
 
-  delegate :referee_1, :referee_2, :referee_3, to: :article
+  #delegate :referee_1_id, :referee_2, :referee_3, to: :article
 
 
   after_update :set_referee_assigned_date
