@@ -7,47 +7,49 @@
 
 
 <% if @article.basic? %>
-    Apreciado <b><%= @user.first_name %></b>,<br>
-    Me es grato informarle que su artículo titulado <b><%= @article.title %></b> fue recibido, se encuentra en proceso
-    de revisión y que pronto le notificaremos a cerca de su aceptación.
-    Agradeciéndole su interés por publicar en la Revista Ingeniería, Educación e Innovación, queda de usted,
+    <p align="justify">Apreciado <b><%= @user.first_name %></b>,<br>
+      Me es grato informarle que su artículo titulado <b><%= @article.title %></b> fue recibido, se encuentra en proceso
+      de revisión y que pronto le notificaremos a cerca de su aceptación.
+      Agradeciéndole su interés por publicar en la Revista Ingeniería, Educación e Innovación, queda de usted,</p>
     <br>
-    <br>
-    Atentamente,
 
-    Prof. Zulima Barboza
-    <br>
-    Directora
+    <p>Atentamente,
+      <br>
+
+      Prof. Zulima Barboza
+      <br>
+      Directora
+    </p>
 
 <% elsif @article.approved? %>
 
-    Estimado <b><%= @user.first_name %></b>,<br>
-    Tengo el agrado de dirigirme a usted para informarle que el artículo titulado <b><%= @article.title %></b> fue
-    aceptado para ser publicado en la Revista Ingeniería, Educación e Innovación
-    Agradeciéndole su interés y colaboración, queda de usted,
-    <br>
-    <br>
-    Atentamente,
-    Prof. Zulima Barboza
-    <br>
-    Directora
-
+    <p align="justify">Estimado <b><%= @user.first_name %></b>,<br>
+      Tengo el agrado de dirigirme a usted para informarle que el artículo titulado <b><%= @article.title %></b> fue
+      aceptado para ser publicado en la Revista Ingeniería, Educación e Innovación
+      Agradeciéndole su interés y colaboración, queda de usted,
+      <br>
+      <br>
+      Atentamente,
+      Prof. Zulima Barboza
+      <br>
+      Directora
+    </p>
 
 <% elsif @article.tcbec? %>
 
-    Estimado <b><%= @user.first_name %></b>,<br>
-    Tengo el agrado de dirigirme a usted para informarle que el artículo titulado <b><%= @article.title %></b> fue
-    aceptado con correcciones. Motivo por el cual le agradecemos se sirva acoger las observaciones indicadas y remitir
-    nuevamente el artículo para su consideración y posterior publicación.
-    Agradeciéndole su interés y colaboración, queda de usted,
+    <p align="justify">Estimado <b><%= @user.first_name %></b>,<br>
+      Tengo el agrado de dirigirme a usted para informarle que el artículo titulado <b><%= @article.title %></b> fue
+      aceptado con correcciones. Motivo por el cual le agradecemos se sirva acoger las observaciones indicadas y remitir
+      nuevamente el artículo para su consideración y posterior publicación.
+      Agradeciéndole su interés y colaboración, queda de usted,
 
-    <br>
-    <br>
-    Atentamente,
-    Prof. Zulima Barboza
-    <br>
-    Directora
-
+      <br>
+      <br>
+      Atentamente,
+      Prof. Zulima Barboza
+      <br>
+      Directora
+    </p>
 
 <% end %>
 
