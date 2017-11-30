@@ -1,6 +1,33 @@
-Estimado editor <%= @user.first_name %>
-=================================
+<% if @article.basic? %>
+    Apreciado <%= @user.first_name %>,
+    Me es grato informarle que su artículo titulado <%= @article.title %> fue recibido, se encuentra en proceso
+    de revisión y que pronto le notificaremos a cerca de su aceptación.
+    Agradeciéndole su interés por publicar en la Revista Ingeniería, Educación e Innovación, queda de usted,
+    Atentamente,
+    Prof. Zulima Barboza
+    Directora
 
-El estado de tu articulo titulado <%= @article.title %> fue actualizado a: <%= t(@article.status, scope: [:activerecord, :attributes, :article, :status]) %>
+<% elsif @article.approved? %>
+
+    Estimado <%= @user.first_name %>,
+    Tengo el agrado de dirigirme a usted para informarle que el artículo titulado <%= @article.title %> fue
+    aceptado para ser publicado en la Revista Ingeniería, Educación e Innovación
+    Agradeciéndole su interés y colaboración, queda de usted,
+    Atentamente,
+    Prof. Zulima Barboza
+    Directora
 
 
+<% elsif @article.tcbec? %>
+
+    Estimado <%= @user.first_name %>,
+    Tengo el agrado de dirigirme a usted para informarle que el artículo titulado <%= @article.title %> fue
+    aceptado con correcciones. Motivo por el cual le agradecemos se sirva acoger las observaciones indicadas y remitir
+    nuevamente el artículo para su consideración y posterior publicación.
+    Agradeciéndole su interés y colaboración, queda de usted,
+    Atentamente,
+    Prof. Zulima Barboza
+    Directora
+
+
+<% end %>

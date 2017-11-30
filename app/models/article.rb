@@ -24,7 +24,7 @@ class Article < ApplicationRecord
 
   before_create :build_referee
 
-  after_update :send_email
+  after_save :send_email
   #after_update :set_referee_assigned_date
 
 
@@ -118,7 +118,7 @@ class Article < ApplicationRecord
   private
 
   def send_email
-    if approved? || rejected? || tcbec? || published?
+    if basic? || approved? || rejected? || tcbec? || published?
       UserMailer.article_email(user, self).deliver_later
     end
   end
