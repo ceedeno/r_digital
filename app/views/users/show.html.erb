@@ -1,19 +1,27 @@
-<h3><%= @user.first_name  %></h3>
-<p>Appellidos: <%= @user.last_name  %></p>
-<p>Correo electrónico: <%= @user.email  %></p>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"><b>Nombre:</b> <%= @user.first_name %></h4>
+    <p class="card-text"><b>Appellidos:</b> <%= @user.last_name %></p>
 
-<p>Telefóno: <%= @user.phone  %></p>
-<p>Dirección: <%= @user.address  %></p>
-<p>País: <%= @user.country  %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item "><b>Correo electrónico:</b> <%= @user.email %></li>
 
-<p>Sitio web: <%= @user.web_site  %></p>
+    <li class="list-group-item "> <b>Correo electrónico:</b> <%= @user.email %>  </li>
+    <li class="list-group-item "> <b>Dirección:</b> <%= @user.address %>  </li>
+    <li class="list-group-item "> <b>País:</b> <%= @user.country %>  </li>
+    <li class="list-group-item "> <b>Sitio web:</b> <%= @user.web_site %>  </li>
 
-<hr>
+    <li class="list-group-item "> <b>Resumen biográfico:</b> <%= @user.bio %>  </li>
 
-<p>Resumen biográfico: <%= @user.bio  %></p>
+    <li class="list-group-item "> <b>Institución:</b> <%= @user.institution %>  </li>
 
-<p>Institución: <%= @user.institution  %></p>
-<p>Especialidad: <%= @user.speciality  %></p>
+    <li class="list-group-item "> <b>Especialidad:</b> <%= @user.speciality %>  </li>
 
+  </ul>
 
-<%=  link_to 'Volver', users_path, class: 'btn btn-info' %>
+</div>
+
+<br>
+
+<%= link_to 'Volver', users_path, class: 'btn btn-info' %>
