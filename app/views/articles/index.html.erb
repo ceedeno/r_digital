@@ -14,7 +14,7 @@
     <thead>
     <tr>
       <th>Título</th>
-      <!--<th>Abstract</th>-->
+      <th>Tipo</th>
       <th>Autores</th>
       <th>Estado</th>
       <th>Números</th>
@@ -26,7 +26,7 @@
     <% @articles.each do |article| %>
         <tr>
           <td><%= article.title %></td>
-          <!--<td><%#= article.abstract %></td>-->
+          <td><%= t(article.kind, scope: [:activerecord, :attributes, :article, :kinds] ) %></td>
           <td><%= article.author %></td>
           <td><%= t(article.status, scope: [:activerecord, :attributes, :article, :status]) %></td>
           <td>

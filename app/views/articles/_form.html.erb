@@ -8,6 +8,9 @@
       <%= f.input :key_words %>
       <%= f.input :language %>
 
+      <%= f.input :kind, collection: Article.kinds.keys.map {|role|
+        [t(role, scope: [:activerecord, :attributes, :article, :kinds]), role]}, include_blank: false %>
+
       <% if current_user.admin? %>
           <%= f.input :status, collection: Article.statuses.keys.map {|role|
             [t(role, scope: [:activerecord, :attributes, :article, :status]), role]}, include_blank: false %>

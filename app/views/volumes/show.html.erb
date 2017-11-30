@@ -1,29 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Number:</strong>
-  <%= @volume.number %>
-</p>
-
-<p>
-  <strong>Pages:</strong>
-  <%= @volume.pages %>
-</p>
-
-<p>
-  <strong>Creation date:</strong>
-  <%= @volume.creation_date %>
-</p>
 
 
-<p>
-  <strong>Números asociados:</strong>
-  <% @volume.journals.each do |j| %>
-    <li><%= j.identifier %></li>
-  <% end %>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"><%= @volume.number %></h4>
 
-</p>
+    <p class="card-text"><strong>Páginas:</strong> <%= @volume.pages %> </p>
 
 
-<%= link_to 'Edit', edit_volume_path(@volume) %> |
-<%= link_to 'Back', volumes_path %>
+    <p class="card-text"><strong>Fecha de creación:</strong> <%= @volume.creation_date %> </p>
+
+
+    <p class="card-text">
+      <strong>Números asociados:</strong>
+    <ul class="list-group">
+      <% @volume.journals.each do |j| %>
+          <li class="list-group-item"><%= j.identifier %></li>
+      <% end %>
+    </ul>
+
+    </p>
+
+  </div>
+</div>
+
+
+<br>
+
+<%= link_to 'Editar', edit_volume_path(@volume), class: 'btn btn-primary' %>
+<%= link_to 'Volver', volumes_path, class: 'btn btn-info' %>

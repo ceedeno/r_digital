@@ -71,6 +71,7 @@ en:
         author: Autores
         language: Idioma
         status: Estado
+        kind: Tipo
         file: Archivo PDF
         key_words: Palabras claves
         tmdcm_1_review: ¿Dar el visto bueno?
@@ -89,6 +90,13 @@ en:
           approved: Aprobado
           assigned_journal: Asignado
           published: Publicado
+        kinds:
+          one: Tipo
+          other: Tipos
+          review: Revisión
+          paper: Investigación
+          brief_communication: Comuniación breve
+          comment: Comentario
       users_article:
         status:
           rejected_by_ec: Rechazado

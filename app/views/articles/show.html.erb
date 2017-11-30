@@ -290,6 +290,8 @@
       <li class="list-group-item fa fa-user"> &nbsp; <%= @article.author %></li>
       <li class="list-group-item fa fa-info-circle"> &nbsp; <%= t(@article.status, scope: [:activerecord, :attributes, :article, :status]) %></li>
 
+      <li class="list-group-item fa fa-book"> &nbsp; <%= t(@article.kind, scope: [:activerecord, :attributes, :article, :kinds] ) %></li>
+
       <li class="list-group-item fa fa-key"> &nbsp; <%= @article.key_words %></li>
 
       <li class="list-group-item fa fa-globe"> &nbsp; <%= @article.language %></li>
