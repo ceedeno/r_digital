@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
     elsif current_user.ecm?
       @articles = Article.where(status: :basic)
     elsif current_user.referee?
-      @articles = Article.joins(:selected_referee).where('selected_referees.referee_1_id = ?', current_user.id).or(Article.joins(:selected_referee).where('selected_referees.referee_1_id = ?', current_user.id)).or(Article.joins(:selected_referee).where('selected_referees.referee_1_id = ?', current_user.id))
+      @articles = Article.joins(:selected_referee).where('selected_referees.referee_1_id = ?', current_user.id).or(Article.joins(:selected_referee).where('selected_referees.referee_2_id = ?', current_user.id)).or(Article.joins(:selected_referee).where('selected_referees.referee_3_id = ?', current_user.id))
     elsif current_user.tmdcm?
       @articles = Article.where(status: :approved)
     elsif current_user.director? || current_user.admin?
