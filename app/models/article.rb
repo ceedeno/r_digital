@@ -58,7 +58,7 @@ class Article < ApplicationRecord
     rc = 0
     dc = 0
 
-    if basic? || adviser?
+    if basic?
       users_articles.each do |ua|
         ac += 1 if ua.eca?
         rc += 1 if ua.rejected_by_ec?
@@ -111,7 +111,7 @@ class Article < ApplicationRecord
   end
 
   def selected_referees
-    [referee_1, referee_2, referee_3]
+    [selected_referee&.referee_1, selected_referee&.referee_2, selected_referee&.referee_3]
   end
 
 

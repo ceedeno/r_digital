@@ -16,10 +16,13 @@
 
                 <%= hidden_field_tag :status, :eca %>
 
+                Selccione al primer árbitro:
                 <%= select_tag :referee_1_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name_and_speciality') %>
                 <br><br>
+                Selccione al segundo árbitro:
                 <%= select_tag :referee_2_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name_and_speciality') %>
                 <br><br>
+                Selccione al tercer árbitro:
                 <%= select_tag :referee_3_id, options_from_collection_for_select(User.where(role: :referee), 'id', 'first_name_and_speciality') %>
                 <br><br>
 
@@ -37,6 +40,7 @@
             <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
 
                 <%= hidden_field_tag :status, :rejected_by_ec %>
+                Escriba el motivo del rechazo: <br>
                 <%= text_field_tag :note %>
 
                 &nbsp; &nbsp;
@@ -54,6 +58,7 @@
             <%= simple_form_for @article, url: article_update_users_article_path(@article) do |f| %>
 
                 <%= hidden_field_tag :status, :tcbec %>
+				Escriba la corrección correspondiente: <br>
                 <%= text_field_tag :note %>
 
                 &nbsp; &nbsp;
@@ -150,23 +155,26 @@
 
                 <%= f.simple_fields_for :selected_referee do |sr| %>
                     <% unless @article&.selected_referee.referee_1_id %>
+                    	Selccione al primer árbitro:
                         <%= sr.select :referee_1_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
                     <% end %>
-
+                    <br> <br>
 
                     <% unless @article&.selected_referee.referee_2_id %>
+                    	Selccione al segundo árbitro:
                         <%= sr.select :referee_2_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
                     <% end %>
-
+                    <br> <br>
                     <% unless @article&.selected_referee.referee_3_id %>
+                    	Selccione al tercer árbitro:
                         <%= sr.select :referee_3_id, @article.suggested_referees.map {|u| [u&.first_name_and_speciality, u&.id]} %>
                     <% end %>
 
                 <% end %>
 
                 &nbsp; &nbsp;
-
-                <%= f.submit 'Enviar a los arbitros', class: 'btn btn-primary', data: {confirm: '¿Estás seguro que quieres enviar a los arbitros?'} %>
+                <br> <br>
+                <%= f.submit 'Enviar a los arbitros', class: 'btn btn-primary btn-block', data: {confirm: '¿Estás seguro que quieres enviar a los arbitros?'} %>
 
                 </li>
 
@@ -192,7 +200,7 @@
             <%= simple_form_for @article do |f| %>
 
                 <% if @article.tmdcm_1.nil? && current_user != @article.tmdcm_2 %>
-                    <%= f.input :tmdcm_1_review, as: :select, include_blank: false %>
+                    <%= f.input :tmdcm_1_review, include_blank: false %>
 
                     <%= f.hidden_field :tmdcm_1_id, value: current_user.id %>
 
@@ -202,7 +210,7 @@
 
                 <% elsif @article.tmdcm_2.nil? && current_user != @article.tmdcm_1 %>
 
-                    <%= f.input :tmdcm_2_review, as: :select, include_blank: false %>
+                    <%= f.input :tmdcm_2_review, include_blank: false %>
 
                     <%= f.hidden_field :tmdcm_2_id, value: current_user.id %>
 
@@ -233,12 +241,12 @@
 
   <% end %>
 
+<!-- Director or Admin-->
   <% if current_user.director? || current_user.admin? %>
 
       <div class="card">
         <div class="card-body">
-
-          Revisiones de ecm <br>
+        <h4 class="card-title">Revisiones del Comité Editorial</h4>
 
           <% @article.users_articles.each do |ua| %>
 
@@ -258,8 +266,7 @@
 
       <div class="card">
         <div class="card-body">
-
-          Revisiones de arbitros <br>
+         <h4 class="card-title">Revisiones del Arbitraje</h4>
 
           <% @article.users_articles.each do |ua| %>
 
@@ -275,7 +282,7 @@
 
         </div>
       </div>
-
+      <br><br>
   <% end %>
 
 
