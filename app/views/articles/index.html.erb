@@ -31,7 +31,7 @@
           <td><%= t(article.status, scope: [:activerecord, :attributes, :article, :status]) %></td>
           <td>
             <%= if article.published? || article.assigned_journal?
-                 "N°" + article&.journal.volume&.number.to_s + "-" + "Vol." +article&.journal&.identifier.to_s
+                 "N°" + article&.journal&.volume&.number.to_s + "-" + "Vol." +article&.journal&.identifier.to_s
                 end %>
           </td>
           <td><%= link_to '', article, class: 'fa fa-eye' %></td>
