@@ -60,6 +60,8 @@ en:
         subject: Tema
         others: Otros
         cover: Portada
+        volume: Volumen
+        publication_date: Fecha de publicacón
         status:
           one: Status
           other: Statuses
