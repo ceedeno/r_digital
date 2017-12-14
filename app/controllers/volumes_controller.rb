@@ -1,5 +1,19 @@
 class VolumesController < ApplicationController
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json {head :forbidden, content_type: 'text/html'}
+      format.html {
+        flash[:danger] = exception.message
+        redirect_to root_path
+      }
+      format.js {head :forbidden, content_type: 'text/html'}
+    end
+  end
+
+  load_and_authorize_resource
+
+
   before_action :authenticate_user!
 
 
@@ -9,6 +23,9 @@ class VolumesController < ApplicationController
   # GET /volumes.json
   def index
     @volumes = Volume.all
+
+    authorize! :volume_index, :volume
+
   end
 
   # GET /volumes/1

@@ -62,6 +62,7 @@ en:
         cover: Portada
         volume: Volumen
         publication_date: Fecha de publicacón
+        max_articles: Número máximo de artículos
         status:
           one: Status
           other: Statuses

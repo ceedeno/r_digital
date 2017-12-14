@@ -14,7 +14,7 @@ class Journal < ApplicationRecord
   dragonfly_accessor :cover
 
 
-  validates :identifier, :editor, :cover, presence: :true
+  validates :identifier, :editor, :cover, :max_articles, presence: :true
 
 
 

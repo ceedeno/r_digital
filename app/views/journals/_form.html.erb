@@ -13,6 +13,7 @@
     <%= f.input :others %>
     <%= f.input :publication_date  %>
     <%= f.input :cover, as: :file, input_html: {accept: '.pdf'} %>
+    <%= f.input :max_articles %>
 
     <% if current_user.admin? %>
         <%= f.input :status, collection: Journal.statuses.keys.map {|role|

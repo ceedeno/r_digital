@@ -15,9 +15,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    #authorize! :users_index, :user
 
     @users = User.all
+
+    authorize! :users_index, :user
+
+
   end
 
   def show

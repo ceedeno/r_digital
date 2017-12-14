@@ -34,13 +34,18 @@ class Ability
 
     if user.director? || user.admin?
       can :manage, :all
+      can :users_index, :all
+      can :volume_index, :all
+
     else
-      can :read, :all
+      can :read, [Article, Journal]
     end
 
-    can :users_index, User do
-      user.ecm?
+
+    if user.ecm?
+      can :users_index, :all
     end
+
 
     can [:new, :create], Article do |article|
       user
